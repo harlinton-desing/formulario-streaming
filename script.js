@@ -1,696 +1,100 @@
-// Configuración de Google Apps Script
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+// Configuración global
+const CONFIG = {
+    whatsappNumber: '+5493816282866',
+    googleSheetsUrl: '', // URL del Google Apps Script (a completar por el usuario)
+    currency: 'ARS',
+    country: 'Argentina'
+};
 
-// Datos de plataformas de streaming
-const STREAMING_PLATFORMS = [
-    {
-        id: 'chatgpt-plus',
-        name: 'ChatGPT Plus Oficial',
-        category: 'AI',
-        description: '🤖 Acceso a GPT-4, respuestas más rápidas y nuevas funciones',
-        image: 'https://placehold.co/80x80?text=ChatGPT+Logo+Green+Background',
-        plans: [
-            {
-                id: 'chatgpt-basic',
-                name: 'Plan Básico',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 10000,
-                nonRenewalPrice: 10000,
-                features: ['Acceso a GPT-4', 'Respuestas prioritarias', 'Nuevas funciones']
-            }
-        ]
-    },
-    {
-        id: 'movies-series-android',
-        name: 'Aplicación de Películas y Series (Solo Android)',
-        category: 'Streaming',
-        description: '📱 Miles de películas y series en tu dispositivo Android',
-        image: 'https://placehold.co/80x80?text=Movies+App+Orange+Background',
-        plans: [
-            {
-                id: 'movies-basic',
-                name: 'Plan Básico',
-                screens: 3,
-                duration: '30 días',
-                renewalPrice: 4000,
-                nonRenewalPrice: 4000,
-                features: ['Hasta 3 dispositivos', 'Contenido HD', 'Sin anuncios'],
-                restrictions: ['Solo Android']
-            }
-        ]
-    },
-    {
-        id: 'disney-espn',
-        name: 'Disney+ ESPN',
-        category: 'Streaming',
-        description: '🏰 Contenido familiar de Disney + deportes en vivo de ESPN',
-        image: 'https://placehold.co/80x80?text=Disney+Logo+Blue+Background',
-        plans: [
-            {
-                id: 'disney-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 5000,
-                nonRenewalPrice: 6500,
-                features: ['Contenido Disney', 'ESPN en vivo', 'Calidad 4K']
-            }
-        ]
-    },
-    {
-        id: 'rakuten-viki',
-        name: '🎌 Rakuten VikiViki – Perfil Privado',
-        category: 'Streaming',
-        description: '🎭 Dramas asiáticos y contenido internacional con subtítulos',
-        image: 'https://placehold.co/80x80?text=Viki+Logo+Purple+Background',
-        plans: [
-            {
-                id: 'viki-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 6000,
-                nonRenewalPrice: 6500,
-                features: ['Perfil privado', 'Sin anuncios', 'Subtítulos múltiples']
-            }
-        ]
-    },
-    {
-        id: 'crunchyroll',
-        name: 'Crunchyroll Megafan',
-        category: 'Streaming',
-        description: '🍜 La mejor plataforma de anime con contenido exclusivo',
-        image: 'https://placehold.co/80x80?text=Crunchyroll+Orange+Background',
-        plans: [
-            {
-                id: 'crunchyroll-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 4500,
-                nonRenewalPrice: 5000,
-                features: ['Anime sin anuncios', 'Simulcasts', 'Manga premium']
-            }
-        ]
-    },
-    {
-        id: 'max-hbo',
-        name: '🟣 Max (ex HBO Max)',
-        category: 'Streaming',
-        description: '🎬 Contenido premium de HBO, Warner Bros y más',
-        image: 'https://placehold.co/80x80?text=HBO+Max+Purple+Background',
-        plans: [
-            {
-                id: 'max-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 5000,
-                nonRenewalPrice: 8000,
-                features: ['Contenido HBO', 'Estrenos Warner', 'Calidad 4K']
-            },
-            {
-                id: 'max-2-screen',
-                name: '2 Pantallas',
-                screens: 2,
-                duration: '30 días',
-                renewalPrice: 9000,
-                nonRenewalPrice: 12000,
-                features: ['Contenido HBO', 'Estrenos Warner', 'Calidad 4K', '2 pantallas simultáneas']
-            }
-        ]
-    },
-    {
-        id: 'prime-video',
-        name: '🚀 Prime Video',
-        category: 'Streaming',
-        description: '📦 Películas, series exclusivas y beneficios de Amazon Prime',
-        image: 'https://placehold.co/80x80?text=Prime+Video+Blue+Background',
-        plans: [
-            {
-                id: 'prime-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 4500,
-                nonRenewalPrice: 5000,
-                features: ['Series Amazon Originals', 'Películas exclusivas', 'Calidad 4K']
-            }
-        ]
-    },
-    {
-        id: 'paramount-plus',
-        name: '🔵 Paramount+ – Perfil Privado',
-        category: 'Streaming',
-        description: '⭐ Contenido de Paramount, CBS, Nickelodeon y más',
-        image: 'https://placehold.co/80x80?text=Paramount+Blue+Background',
-        plans: [
-            {
-                id: 'paramount-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 1500,
-                nonRenewalPrice: 2000,
-                features: ['Perfil privado', 'Contenido CBS', 'Shows de Nickelodeon']
-            }
-        ]
-    },
-    {
-        id: 'vix-premium',
-        name: '📺 Vix Premium – Perfil Privado',
-        category: 'Streaming',
-        description: '🌟 Contenido en español, novelas, deportes y entretenimiento',
-        image: 'https://placehold.co/80x80?text=Vix+Premium+Orange+Background',
-        plans: [
-            {
-                id: 'vix-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 4500,
-                nonRenewalPrice: 5500,
-                features: ['Perfil privado', 'Contenido en español', 'Deportes en vivo']
-            }
-        ]
-    },
-    {
-        id: 'youtube-premium',
-        name: '▶ YouTube Premium – Grupo Familiar',
-        category: 'Streaming',
-        description: '🎵 YouTube sin anuncios + YouTube Music incluido',
-        image: 'https://placehold.co/80x80?text=YouTube+Red+Background',
-        plans: [
-            {
-                id: 'youtube-1-month',
-                name: '1 Mes',
-                screens: 1,
-                duration: '1 mes',
-                renewalPrice: 4500,
-                nonRenewalPrice: 4500,
-                features: ['Sin anuncios', 'YouTube Music', 'Descargas offline']
-            },
-            {
-                id: 'youtube-2-months',
-                name: '2 Meses',
-                screens: 1,
-                duration: '2 meses',
-                renewalPrice: 8000,
-                nonRenewalPrice: 8000,
-                features: ['Sin anuncios', 'YouTube Music', 'Descargas offline']
-            },
-            {
-                id: 'youtube-3-months',
-                name: '3 Meses',
-                screens: 1,
-                duration: '3 meses',
-                renewalPrice: 12000,
-                nonRenewalPrice: 12000,
-                features: ['Sin anuncios', 'YouTube Music', 'Descargas offline']
-            }
-        ]
-    },
-    {
-        id: 'netflix-premium-4k',
-        name: '🔵 Netflix Premium 4K – Cuenta Compartida',
-        category: 'Streaming',
-        description: '🛡️ Perfil privado con PIN, 📺 Calidad Ultra HD (4K), 👥 Cuenta compartida',
-        image: 'https://placehold.co/80x80?text=Netflix+Red+Background',
-        plans: [
-            {
-                id: 'netflix-premium-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 8000,
-                nonRenewalPrice: 8500,
-                features: ['Perfil privado con PIN', 'Calidad Ultra HD (4K)', 'Cuenta compartida']
-            },
-            {
-                id: 'netflix-premium-2-screens',
-                name: '2 Pantallas',
-                screens: 2,
-                duration: '30 días',
-                renewalPrice: 14000,
-                nonRenewalPrice: 15000,
-                features: ['Perfil privado con PIN', 'Calidad Ultra HD (4K)', 'Cuenta compartida']
-            }
-        ]
-    },
-    {
-        id: 'netflix-standard-hd',
-        name: '🟢 Netflix Estándar HD – Cuenta Compartida',
-        category: 'Streaming',
-        description: '🛡️ Perfil privado con PIN, 📺 Calidad HD (1080p), 👥 Cuenta compartida',
-        image: 'https://placehold.co/80x80?text=Netflix+Green+Background',
-        plans: [
-            {
-                id: 'netflix-standard-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 7000,
-                nonRenewalPrice: 7500,
-                features: ['Perfil privado con PIN', 'Calidad HD (1080p)', 'Cuenta compartida']
-            },
-            {
-                id: 'netflix-standard-2-screens',
-                name: '2 Pantallas',
-                screens: 2,
-                duration: '30 días',
-                renewalPrice: 13000,
-                nonRenewalPrice: 14000,
-                features: ['Perfil privado con PIN', 'Calidad HD (1080p)', 'Cuenta compartida']
-            }
-        ]
-    },
-    {
-        id: 'netflix-extra-private',
-        name: '🔴 Netflix Extra Privado – Cuenta Individual',
-        category: 'Streaming',
-        description: '✨ Cuenta 100% privada y exclusiva, 🔐 Sin mensajes ni bloqueos, 📺 Calidad Ultra HD (4K)',
-        image: 'https://placehold.co/80x80?text=Netflix+Black+Background',
-        plans: [
-            {
-                id: 'netflix-extra-1-screen',
-                name: '1 Pantalla',
-                screens: 1,
-                duration: '30 días',
-                renewalPrice: 8500,
-                nonRenewalPrice: 9500,
-                features: ['Cuenta 100% privada', 'Sin mensajes ni bloqueos', 'Calidad Ultra HD (4K)']
-            }
-        ]
-    },
-    {
-        id: 'canva-pro',
-        name: '🎨 CANVA PRO – RENOVABLE',
-        category: 'Diseño',
-        description: '🎨 Herramienta de diseño profesional con plantillas premium',
-        image: 'https://placehold.co/80x80?text=Canva+Purple+Background',
-        plans: [
-            {
-                id: 'canva-1-month',
-                name: '1 Mes',
-                screens: 1,
-                duration: '1 mes',
-                renewalPrice: 4000,
-                nonRenewalPrice: 4000,
-                features: ['Plantillas premium', 'Elementos pro', 'Fondos transparentes']
-            },
-            {
-                id: 'canva-3-months',
-                name: '3 Meses',
-                screens: 1,
-                duration: '3 meses',
-                renewalPrice: 9000,
-                nonRenewalPrice: 9000,
-                features: ['Plantillas premium', 'Elementos pro', 'Fondos transparentes']
-            },
-            {
-                id: 'canva-6-months',
-                name: '6 Meses',
-                screens: 1,
-                duration: '6 meses',
-                renewalPrice: 16000,
-                nonRenewalPrice: 16000,
-                features: ['Plantillas premium', 'Elementos pro', 'Fondos transparentes']
-            },
-            {
-                id: 'canva-12-months',
-                name: '12 Meses',
-                screens: 1,
-                duration: '12 meses',
-                renewalPrice: 30000,
-                nonRenewalPrice: 30000,
-                features: ['Plantillas premium', 'Elementos pro', 'Fondos transparentes']
-            }
-        ]
-    }
-];
+// Estado global del formulario
+let formState = {
+    selectedPlatform: null,
+    selectedDuration: null,
+    selectedScreens: null,
+    selectedRenewal: null,
+    selectedPromotion: null,
+    calculatedPrice: 0,
+    formData: {}
+};
 
-// Promociones disponibles
-const PROMOTIONS = [
-    {
-        id: 'tv-online-plus-promo-3m',
-        name: 'TV Online Plus - 3 meses',
-        description: 'Promoción única por cliente',
-        price: 14500,
-        duration: '3 meses',
-        screens: 3,
-        restrictions: ['Solo una vez por cliente en contratación y renovación']
-    },
-    {
-        id: 'tv-online-plus-promo-6m',
-        name: 'TV Online Plus - 6 meses',
-        description: 'Promoción única por cliente',
-        price: 29500,
-        duration: '6 meses',
-        screens: 3,
-        restrictions: ['Solo una vez por cliente en contratación y renovación']
-    },
-    {
-        id: 'nebula-promo-3m',
-        name: 'Nebula - 3 meses',
-        description: 'Promoción única por cliente',
-        price: 14700,
-        duration: '3 meses',
-        screens: 3,
-        restrictions: ['Solo una vez por cliente en contratación y renovación']
-    },
-    {
-        id: 'nebula-promo-6m',
-        name: 'Nebula - 6 meses',
-        description: 'Promoción única por cliente',
-        price: 29500,
-        duration: '6 meses',
-        screens: 3,
-        restrictions: ['Solo una vez por cliente en contratación y renovación']
-    },
-    {
-        id: 'xtv-new-1m',
-        name: 'XTV en Vivo - 1 mes (nuevos)',
-        description: 'Solo para nuevos clientes',
-        price: 3500,
-        duration: '1 mes',
-        screens: 1,
-        restrictions: ['Solo nuevos clientes']
-    },
-    {
-        id: 'xtv-new-2m-1screen',
-        name: 'XTV en Vivo - 2 meses (1 dispositivo)',
-        description: 'Solo para nuevos clientes',
-        price: 4500,
-        duration: '2 meses',
-        screens: 1,
-        restrictions: ['Solo nuevos clientes']
-    },
-    {
-        id: 'xtv-new-2m-2screens',
-        name: 'XTV en Vivo - 2 meses (2 dispositivos)',
-        description: 'Solo para nuevos clientes',
-        price: 5500,
-        duration: '2 meses',
-        screens: 2,
-        restrictions: ['Solo nuevos clientes']
-    },
-    {
-        id: 'xtv-new-3m-2screens',
-        name: 'XTV en Vivo - 3 meses (2 dispositivos)',
-        description: 'Solo para nuevos clientes',
-        price: 7500,
-        duration: '3 meses',
-        screens: 2,
-        restrictions: ['Solo nuevos clientes']
-    }
-];
+// Elementos del DOM
+let elements = {};
 
-// Variables globales
-let selectedPlatform = null;
-let selectedPlan = null;
-let currentRenewalType = 'renewal';
-
-// Formatear precio en pesos colombianos
-function formatPrice(price) {
-    return new Intl.NumberFormat('es-CO', {
-        style: 'currency',
-        currency: 'COP',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    }).format(price);
-}
-
-// Inicializar la aplicación
+// Inicialización cuando el DOM está listo
 document.addEventListener('DOMContentLoaded', function() {
-    initializeForm();
+    initializeElements();
     setupEventListeners();
-    loadPromotions();
+    setupFormValidation();
+    console.log('🚀 StreamingARG Form initialized successfully!');
 });
 
-// Inicializar formulario
-function initializeForm() {
-    populatePlatformSelect();
-    setupSmoothScrolling();
-}
-
-// Configurar smooth scrolling para los enlaces de navegación
-function setupSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// Poblar el select de plataformas
-function populatePlatformSelect() {
-    const platformSelect = document.getElementById('plataforma');
-    
-    STREAMING_PLATFORMS.forEach(platform => {
-        const option = document.createElement('option');
-        option.value = platform.id;
-        option.textContent = platform.name;
-        option.dataset.category = platform.category;
-        platformSelect.appendChild(option);
-    });
+// Inicializar referencias a elementos del DOM
+function initializeElements() {
+    elements = {
+        form: document.getElementById('streamingForm'),
+        platformSelect: document.getElementById('platform'),
+        platformDetails: document.getElementById('platform-details'),
+        platformImg: document.getElementById('platform-img'),
+        platformTitle: document.getElementById('platform-title'),
+        platformDescription: document.getElementById('platform-description'),
+        pricingOptions: document.getElementById('pricing-options'),
+        planSelection: document.getElementById('plan-selection'),
+        durationSelect: document.getElementById('duration'),
+        screensSelect: document.getElementById('screens'),
+        renewalRadios: document.querySelectorAll('input[name="renewal"]'),
+        promotionsSection: document.getElementById('promotions-section'),
+        availablePromotions: document.getElementById('available-promotions'),
+        priceSummary: document.getElementById('price-summary'),
+        summaryPlatform: document.getElementById('summary-platform'),
+        summaryPlan: document.getElementById('summary-plan'),
+        summaryScreens: document.getElementById('summary-screens'),
+        summaryRenewal: document.getElementById('summary-renewal'),
+        summaryPromotion: document.getElementById('summary-promotion'),
+        promotionRow: document.getElementById('promotion-row'),
+        totalPrice: document.getElementById('total-price'),
+        submitBtn: document.getElementById('submit-btn'),
+        nameInput: document.getElementById('name'),
+        phoneInput: document.getElementById('phone'),
+        successModal: document.getElementById('success-modal'),
+        loadingOverlay: document.getElementById('loading-overlay'),
+        modalSummary: document.getElementById('modal-summary')
+    };
 }
 
 // Configurar event listeners
 function setupEventListeners() {
-    const form = document.getElementById('streamingForm');
-    const platformSelect = document.getElementById('plataforma');
-    const planSelect = document.getElementById('plan');
-    const renewalRadios = document.querySelectorAll('input[name="tipoRenovacion"]');
-    const newRequestBtn = document.getElementById('new-request');
-
     // Cambio de plataforma
-    platformSelect.addEventListener('change', handlePlatformChange);
+    elements.platformSelect.addEventListener('change', handlePlatformChange);
     
-    // Cambio de plan
-    planSelect.addEventListener('change', handlePlanChange);
+    // Cambio de duración
+    elements.durationSelect.addEventListener('change', handleDurationChange);
     
-    // Cambio de tipo de renovación
-    renewalRadios.forEach(radio => {
-        radio.addEventListener('change', handleRenewalTypeChange);
+    // Cambio de pantallas
+    elements.screensSelect.addEventListener('change', handleScreensChange);
+    
+    // Cambio de renovación
+    elements.renewalRadios.forEach(radio => {
+        radio.addEventListener('change', handleRenewalChange);
     });
     
     // Envío del formulario
-    form.addEventListener('submit', handleFormSubmit);
-    
-    // Nueva solicitud
-    newRequestBtn.addEventListener('click', resetForm);
+    elements.form.addEventListener('submit', handleFormSubmit);
     
     // Validación en tiempo real
-    setupRealTimeValidation();
-}
-
-// Manejar cambio de plataforma
-function handlePlatformChange(e) {
-    const platformId = e.target.value;
+    elements.nameInput.addEventListener('input', validateName);
+    elements.phoneInput.addEventListener('input', validatePhone);
     
-    if (!platformId) {
-        hidePlatformInfo();
-        hidePlanSelection();
-        hideRenewalSection();
-        hidePlanFeatures();
-        updatePlanValue(0);
-        return;
-    }
-    
-    selectedPlatform = STREAMING_PLATFORMS.find(p => p.id === platformId);
-    
-    if (selectedPlatform) {
-        showPlatformInfo(selectedPlatform);
-        populatePlanSelect(selectedPlatform.plans);
-        showPlanSelection();
-    }
-}
-
-// Mostrar información de la plataforma
-function showPlatformInfo(platform) {
-    const platformInfo = document.getElementById('platform-info');
-    const platformImage = document.getElementById('platform-image');
-    const platformTitle = document.getElementById('platform-title');
-    const platformDescription = document.getElementById('platform-description');
-    
-    platformImage.src = platform.image;
-    platformImage.alt = platform.name;
-    platformTitle.textContent = platform.name;
-    platformDescription.textContent = platform.description;
-    
-    platformInfo.style.display = 'block';
-}
-
-// Ocultar información de la plataforma
-function hidePlatformInfo() {
-    document.getElementById('platform-info').style.display = 'none';
-}
-
-// Poblar el select de planes
-function populatePlanSelect(plans) {
-    const planSelect = document.getElementById('plan');
-    
-    // Limpiar opciones existentes
-    planSelect.innerHTML = '<option value="">Seleccione un plan</option>';
-    
-    plans.forEach(plan => {
-        const option = document.createElement('option');
-        option.value = plan.id;
-        option.textContent = `${plan.name} - ${plan.screens} pantalla${plan.screens > 1 ? 's' : ''} • ${plan.duration}`;
-        planSelect.appendChild(option);
+    // Cerrar modal con Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
     });
 }
 
-// Mostrar selección de plan
-function showPlanSelection() {
-    document.getElementById('plan-group').style.display = 'block';
-}
-
-// Ocultar selección de plan
-function hidePlanSelection() {
-    document.getElementById('plan-group').style.display = 'none';
-    document.getElementById('plan').value = '';
-}
-
-// Manejar cambio de plan
-function handlePlanChange(e) {
-    const planId = e.target.value;
-    
-    if (!planId || !selectedPlatform) {
-        hideRenewalSection();
-        hidePlanFeatures();
-        updatePlanValue(0);
-        return;
-    }
-    
-    selectedPlan = selectedPlatform.plans.find(p => p.id === planId);
-    
-    if (selectedPlan) {
-        showRenewalSection(selectedPlan);
-        showPlanFeatures(selectedPlan);
-        updatePlanValue(selectedPlan[currentRenewalType + 'Price']);
-    }
-}
-
-// Mostrar sección de renovación
-function showRenewalSection(plan) {
-    const renewalSection = document.getElementById('renewal-section');
-    const renewalPrice = document.getElementById('renewal-price');
-    const nonRenewalPrice = document.getElementById('non-renewal-price');
-    
-    renewalPrice.textContent = formatPrice(plan.renewalPrice);
-    nonRenewalPrice.textContent = formatPrice(plan.nonRenewalPrice);
-    
-    renewalSection.style.display = 'block';
-}
-
-// Ocultar sección de renovación
-function hideRenewalSection() {
-    document.getElementById('renewal-section').style.display = 'none';
-}
-
-// Mostrar características del plan
-function showPlanFeatures(plan) {
-    if (!plan.features || plan.features.length === 0) {
-        hidePlanFeatures();
-        return;
-    }
-    
-    const planFeatures = document.getElementById('plan-features');
-    const featuresList = document.getElementById('features-list');
-    
-    featuresList.innerHTML = '';
-    plan.features.forEach(feature => {
-        const li = document.createElement('li');
-        li.textContent = feature;
-        featuresList.appendChild(li);
-    });
-    
-    planFeatures.style.display = 'block';
-}
-
-// Ocultar características del plan
-function hidePlanFeatures() {
-    document.getElementById('plan-features').style.display = 'none';
-}
-
-// Manejar cambio de tipo de renovación
-function handleRenewalTypeChange(e) {
-    currentRenewalType = e.target.value;
-    
-    if (selectedPlan) {
-        const price = selectedPlan[currentRenewalType + 'Price'];
-        updatePlanValue(price);
-    }
-    
-    // Actualizar estilos visuales
-    updateRenewalCardStyles();
-}
-
-// Actualizar estilos de las tarjetas de renovación
-function updateRenewalCardStyles() {
-    const renewalCard = document.getElementById('renewal-card');
-    const nonRenewalCard = document.getElementById('non-renewal-card');
-    
-    renewalCard.classList.toggle('selected', currentRenewalType === 'renewal');
-    nonRenewalCard.classList.toggle('selected', currentRenewalType === 'non-renewal');
-}
-
-// Actualizar valor del plan
-function updatePlanValue(price) {
-    const valorPlanInput = document.getElementById('valorPlan');
-    valorPlanInput.value = formatPrice(price);
-}
-
-// Cargar promociones
-function loadPromotions() {
-    const promocionesContainer = document.getElementById('promociones-container');
-    
-    PROMOTIONS.forEach(promotion => {
-        const promocionCard = createPromotionCard(promotion);
-        promocionesContainer.appendChild(promocionCard);
-    });
-}
-
-// Crear tarjeta de promoción
-function createPromotionCard(promotion) {
-    const card = document.createElement('div');
-    card.className = 'promocion-card';
-    card.innerHTML = `
-        <div class="promocion-header">
-            <input type="checkbox" id="promo-${promotion.id}" name="promociones" value="${promotion.id}" class="promocion-checkbox">
-            <div class="promocion-content">
-                <h4>${promotion.name}</h4>
-                <p class="promocion-description">${promotion.description}</p>
-                <div class="promocion-details">
-                    <span class="promocion-price">${formatPrice(promotion.price)}</span>
-                    <span class="promocion-badge">${promotion.screens} pantalla${promotion.screens > 1 ? 's' : ''} • ${promotion.duration}</span>
-                </div>
-                ${promotion.restrictions ? `<p class="promocion-restrictions">${promotion.restrictions.join(', ')}</p>` : ''}
-            </div>
-        </div>
-    `;
-    
-    // Agregar event listener para el checkbox
-    const checkbox = card.querySelector('input[type="checkbox"]');
-    checkbox.addEventListener('change', function() {
-        card.classList.toggle('selected', this.checked);
-    });
-    
-    return card;
-}
-
-// Configurar validación en tiempo real
-function setupRealTimeValidation() {
-    const inputs = document.querySelectorAll('input[required], select[required]');
+// Configurar validación del formulario
+function setupFormValidation() {
+    const inputs = [elements.nameInput, elements.phoneInput, elements.platformSelect];
     
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
@@ -698,167 +102,464 @@ function setupRealTimeValidation() {
         });
         
         input.addEventListener('input', function() {
-            if (this.classList.contains('error')) {
-                validateField(this);
-            }
+            clearFieldError(this);
+            checkFormValidity();
         });
     });
+}
+
+// Manejar cambio de plataforma
+function handlePlatformChange() {
+    const platformId = elements.platformSelect.value;
+    
+    if (!platformId) {
+        hidePlatformDetails();
+        return;
+    }
+    
+    const platformData = getPlatformData(platformId);
+    if (!platformData) {
+        console.error('Platform data not found:', platformId);
+        return;
+    }
+    
+    formState.selectedPlatform = platformId;
+    showPlatformDetails(platformData);
+    populateDurationOptions(platformData);
+    checkForPromotions(platformId);
+    
+    // Resetear selecciones posteriores
+    resetSelections();
+    checkFormValidity();
+}
+
+// Mostrar detalles de la plataforma
+function showPlatformDetails(platformData) {
+    elements.platformImg.src = platformData.image;
+    elements.platformImg.alt = platformData.name;
+    elements.platformTitle.textContent = platformData.name;
+    elements.platformDescription.innerHTML = `
+        <p>${platformData.description}</p>
+        <div class="platform-features">
+            ${platformData.features.map(feature => `<span class="feature-tag">${feature}</span>`).join('')}
+        </div>
+        ${platformData.warning ? `<div class="platform-warning">⚠️ ${platformData.warning}</div>` : ''}
+    `;
+    
+    // Mostrar opciones de precios
+    displayPricingOptions(platformData);
+    
+    elements.platformDetails.style.display = 'block';
+    elements.platformDetails.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Mostrar opciones de precios
+function displayPricingOptions(platformData) {
+    const pricingHTML = Object.entries(platformData.plans).map(([planKey, planData]) => {
+        const screenOptions = Object.entries(planData.screens).map(([screens, prices]) => {
+            const withRenewal = formatPrice(prices['con-renovacion']);
+            const withoutRenewal = formatPrice(prices['sin-renovacion']);
+            
+            return `
+                <div class="pricing-row">
+                    <span>${screens} pantalla${screens > 1 ? 's' : ''}</span>
+                    <div class="pricing-values">
+                        <span class="price-renewal">Con renovación: ${withRenewal}</span>
+                        <span class="price-no-renewal">Sin renovación: ${withoutRenewal}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        return `
+            <div class="plan-pricing">
+                <h4>${planData.name}</h4>
+                ${screenOptions}
+            </div>
+        `;
+    }).join('');
+    
+    elements.pricingOptions.innerHTML = pricingHTML;
+}
+
+// Ocultar detalles de la plataforma
+function hidePlatformDetails() {
+    elements.platformDetails.style.display = 'none';
+    elements.planSelection.style.display = 'none';
+    elements.promotionsSection.style.display = 'none';
+    elements.priceSummary.style.display = 'none';
+}
+
+// Poblar opciones de duración
+function populateDurationOptions(platformData) {
+    elements.durationSelect.innerHTML = '<option value="">-- Seleccione duración --</option>';
+    
+    Object.entries(platformData.plans).forEach(([planKey, planData]) => {
+        const option = document.createElement('option');
+        option.value = planKey;
+        option.textContent = planData.name;
+        elements.durationSelect.appendChild(option);
+    });
+    
+    elements.planSelection.style.display = 'block';
+}
+
+// Manejar cambio de duración
+function handleDurationChange() {
+    const duration = elements.durationSelect.value;
+    
+    if (!duration || !formState.selectedPlatform) {
+        return;
+    }
+    
+    formState.selectedDuration = duration;
+    populateScreensOptions();
+    resetPriceCalculation();
+    checkFormValidity();
+}
+
+// Poblar opciones de pantallas
+function populateScreensOptions() {
+    const platformData = getPlatformData(formState.selectedPlatform);
+    const planData = platformData.plans[formState.selectedDuration];
+    
+    elements.screensSelect.innerHTML = '<option value="">-- Seleccione pantallas --</option>';
+    
+    Object.keys(planData.screens).forEach(screens => {
+        const option = document.createElement('option');
+        option.value = screens;
+        option.textContent = `${screens} pantalla${screens > 1 ? 's' : ''}`;
+        elements.screensSelect.appendChild(option);
+    });
+}
+
+// Manejar cambio de pantallas
+function handleScreensChange() {
+    const screens = elements.screensSelect.value;
+    
+    if (!screens) {
+        return;
+    }
+    
+    formState.selectedScreens = screens;
+    resetPriceCalculation();
+    checkFormValidity();
+}
+
+// Manejar cambio de renovación
+function handleRenewalChange() {
+    const selectedRenewal = document.querySelector('input[name="renewal"]:checked');
+    
+    if (!selectedRenewal) {
+        return;
+    }
+    
+    formState.selectedRenewal = selectedRenewal.value;
+    calculatePrice();
+    updatePriceSummary();
+    checkFormValidity();
+}
+
+// Verificar promociones disponibles
+function checkForPromotions(platformId) {
+    const promotions = getPlatformPromotions(platformId);
+    
+    if (promotions.length > 0) {
+        displayPromotions(promotions);
+        elements.promotionsSection.style.display = 'block';
+    } else {
+        elements.promotionsSection.style.display = 'none';
+    }
+}
+
+// Mostrar promociones disponibles
+function displayPromotions(promotions) {
+    const promotionsHTML = promotions.map(promotion => `
+        <div class="promotion-item">
+            <label class="promotion-label">
+                <input type="radio" name="promotion" value="${promotion.name}">
+                <span class="promotion-custom"></span>
+                <div class="promotion-info">
+                    <h4>${promotion.name}</h4>
+                    <p>${promotion.description}</p>
+                </div>
+            </label>
+        </div>
+    `).join('');
+    
+    elements.availablePromotions.innerHTML = promotionsHTML;
+    
+    // Agregar event listeners a las promociones
+    const promotionRadios = elements.availablePromotions.querySelectorAll('input[name="promotion"]');
+    promotionRadios.forEach(radio => {
+        radio.addEventListener('change', handlePromotionChange);
+    });
+}
+
+// Manejar cambio de promoción
+function handlePromotionChange() {
+    const selectedPromotion = document.querySelector('input[name="promotion"]:checked');
+    formState.selectedPromotion = selectedPromotion ? selectedPromotion.value : null;
+    
+    calculatePrice();
+    updatePriceSummary();
+}
+
+// Calcular precio
+function calculatePrice() {
+    if (!formState.selectedPlatform || !formState.selectedDuration || 
+        !formState.selectedScreens || !formState.selectedRenewal) {
+        return;
+    }
+    
+    let price = 0;
+    
+    if (formState.selectedPromotion) {
+        price = calculatePromotionPrice(
+            formState.selectedPlatform,
+            formState.selectedDuration,
+            formState.selectedScreens,
+            formState.selectedRenewal,
+            formState.selectedPromotion
+        );
+    }
+    
+    if (!price) {
+        price = getRegularPrice(
+            formState.selectedPlatform,
+            formState.selectedDuration,
+            formState.selectedScreens,
+            formState.selectedRenewal
+        );
+    }
+    
+    formState.calculatedPrice = price || 0;
+}
+
+// Actualizar resumen de precios
+function updatePriceSummary() {
+    if (formState.calculatedPrice === 0) {
+        elements.priceSummary.style.display = 'none';
+        return;
+    }
+    
+    const platformData = getPlatformData(formState.selectedPlatform);
+    const planData = platformData.plans[formState.selectedDuration];
+    
+    elements.summaryPlatform.textContent = platformData.name;
+    elements.summaryPlan.textContent = planData.name;
+    elements.summaryScreens.textContent = `${formState.selectedScreens} pantalla${formState.selectedScreens > 1 ? 's' : ''}`;
+    elements.summaryRenewal.textContent = formState.selectedRenewal === 'con-renovacion' ? 'Con Renovación' : 'Sin Renovación';
+    
+    if (formState.selectedPromotion) {
+        elements.summaryPromotion.textContent = formState.selectedPromotion;
+        elements.promotionRow.style.display = 'flex';
+    } else {
+        elements.promotionRow.style.display = 'none';
+    }
+    
+    elements.totalPrice.textContent = formatPrice(formState.calculatedPrice);
+    elements.priceSummary.style.display = 'block';
+    
+    // Scroll suave al resumen
+    elements.priceSummary.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Resetear selecciones
+function resetSelections() {
+    formState.selectedDuration = null;
+    formState.selectedScreens = null;
+    formState.selectedRenewal = null;
+    formState.selectedPromotion = null;
+    formState.calculatedPrice = 0;
+    
+    elements.durationSelect.value = '';
+    elements.screensSelect.value = '';
+    elements.renewalRadios.forEach(radio => radio.checked = false);
+    
+    const promotionRadios = document.querySelectorAll('input[name="promotion"]');
+    promotionRadios.forEach(radio => radio.checked = false);
+}
+
+// Resetear cálculo de precio
+function resetPriceCalculation() {
+    formState.selectedRenewal = null;
+    formState.selectedPromotion = null;
+    formState.calculatedPrice = 0;
+    
+    elements.renewalRadios.forEach(radio => radio.checked = false);
+    elements.priceSummary.style.display = 'none';
+    
+    const promotionRadios = document.querySelectorAll('input[name="promotion"]');
+    promotionRadios.forEach(radio => radio.checked = false);
 }
 
 // Validar campo individual
 function validateField(field) {
     const fieldName = field.name;
     const value = field.value.trim();
-    let isValid = true;
-    let errorMessage = '';
     
-    // Validación por tipo de campo
     switch (fieldName) {
-        case 'nombre':
-            if (!value) {
-                isValid = false;
-                errorMessage = 'El nombre es requerido';
-            } else if (value.length < 2) {
-                isValid = false;
-                errorMessage = 'El nombre debe tener al menos 2 caracteres';
-            }
-            break;
-            
-        case 'telefono':
-            if (!value) {
-                isValid = false;
-                errorMessage = 'El teléfono es requerido';
-            } else if (!/^\d{10}$/.test(value.replace(/\s/g, ''))) {
-                isValid = false;
-                errorMessage = 'El teléfono debe tener 10 dígitos';
-            }
-            break;
-            
-        case 'plataforma':
-            if (!value) {
-                isValid = false;
-                errorMessage = 'Debe seleccionar una plataforma';
-            }
-            break;
-            
-        case 'plan':
-            if (!value) {
-                isValid = false;
-                errorMessage = 'Debe seleccionar un plan';
-            }
-            break;
+        case 'name':
+            return validateName();
+        case 'phone':
+            return validatePhone();
+        case 'platform':
+            return validatePlatform();
+        default:
+            return true;
+    }
+}
+
+// Validar nombre
+function validateName() {
+    const name = elements.nameInput.value.trim();
+    const errorElement = document.getElementById('name-error');
+    
+    if (name.length < 2) {
+        showFieldError(elements.nameInput, errorElement, 'El nombre debe tener al menos 2 caracteres');
+        return false;
     }
     
-    // Mostrar/ocultar mensaje de error
-    showFieldError(field, isValid, errorMessage);
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name)) {
+        showFieldError(elements.nameInput, errorElement, 'El nombre solo puede contener letras y espacios');
+        return false;
+    }
     
-    return isValid;
+    clearFieldError(elements.nameInput, errorElement);
+    return true;
+}
+
+// Validar teléfono
+function validatePhone() {
+    const phone = elements.phoneInput.value.trim();
+    const errorElement = document.getElementById('phone-error');
+    
+    // Patrón para teléfonos argentinos
+    const phonePattern = /^(\+54\s?)?(\d{2,4}\s?)?\d{6,8}$/;
+    
+    if (!phonePattern.test(phone.replace(/[\s-]/g, ''))) {
+        showFieldError(elements.phoneInput, errorElement, 'Ingrese un número de teléfono válido argentino');
+        return false;
+    }
+    
+    clearFieldError(elements.phoneInput, errorElement);
+    return true;
+}
+
+// Validar plataforma
+function validatePlatform() {
+    const platform = elements.platformSelect.value;
+    const errorElement = document.getElementById('platform-error');
+    
+    if (!platform) {
+        showFieldError(elements.platformSelect, errorElement, 'Debe seleccionar una plataforma');
+        return false;
+    }
+    
+    clearFieldError(elements.platformSelect, errorElement);
+    return true;
 }
 
 // Mostrar error de campo
-function showFieldError(field, isValid, errorMessage) {
-    const errorElement = document.getElementById(field.name + '-error');
-    
-    if (isValid) {
-        field.classList.remove('error');
-        if (errorElement) {
-            errorElement.textContent = '';
-            errorElement.classList.remove('show');
-        }
-    } else {
-        field.classList.add('error');
-        if (errorElement) {
-            errorElement.textContent = errorMessage;
-            errorElement.classList.add('show');
-        }
+function showFieldError(field, errorElement, message) {
+    field.style.borderColor = 'var(--error-color)';
+    errorElement.textContent = message;
+    errorElement.classList.add('show');
+}
+
+// Limpiar error de campo
+function clearFieldError(field, errorElement = null) {
+    field.style.borderColor = '';
+    if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.classList.remove('show');
     }
 }
 
-// Validar formulario completo
-function validateForm() {
-    const requiredFields = document.querySelectorAll('input[required], select[required]');
-    let isValid = true;
+// Verificar validez del formulario
+function checkFormValidity() {
+    const isNameValid = validateName();
+    const isPhoneValid = validatePhone();
+    const isPlatformValid = validatePlatform();
+    const isPlanComplete = formState.calculatedPrice > 0;
     
-    requiredFields.forEach(field => {
-        if (!validateField(field)) {
-            isValid = false;
-        }
-    });
+    const isFormValid = isNameValid && isPhoneValid && isPlatformValid && isPlanComplete;
     
-    return isValid;
+    elements.submitBtn.disabled = !isFormValid;
+    
+    if (isFormValid) {
+        elements.submitBtn.classList.add('ready');
+    } else {
+        elements.submitBtn.classList.remove('ready');
+    }
+    
+    return isFormValid;
 }
 
 // Manejar envío del formulario
 async function handleFormSubmit(e) {
     e.preventDefault();
     
-    if (!validateForm()) {
-        showNotification('Por favor, corrija los errores en el formulario', 'error');
+    if (!checkFormValidity()) {
+        showNotification('Por favor complete todos los campos correctamente', 'error');
         return;
     }
     
-    const submitBtn = document.getElementById('submit-btn');
-    const submitText = document.getElementById('submit-text');
-    const loadingSpinner = document.getElementById('loading-spinner');
+    // Recopilar datos del formulario
+    const formData = {
+        nombre: elements.nameInput.value.trim(),
+        telefono: elements.phoneInput.value.trim(),
+        plataforma: getPlatformData(formState.selectedPlatform).name,
+        plan: getPlatformData(formState.selectedPlatform).plans[formState.selectedDuration].name,
+        pantallas: formState.selectedScreens,
+        renovacion: formState.selectedRenewal === 'con-renovacion' ? 'Con Renovación' : 'Sin Renovación',
+        promocion: formState.selectedPromotion || 'Ninguna',
+        precio: formState.calculatedPrice,
+        fecha: new Date().toLocaleString('es-AR'),
+        pais: CONFIG.country
+    };
     
-    // Mostrar estado de carga
-    submitBtn.disabled = true;
-    submitText.textContent = 'Enviando...';
-    loadingSpinner.style.display = 'inline-block';
+    formState.formData = formData;
+    
+    // Mostrar loading
+    showLoading();
     
     try {
-        const formData = collectFormData();
-        const response = await submitToGoogleSheets(formData);
-        
-        if (response.result === 'success') {
-            showSuccessMessage();
-        } else {
-            throw new Error(response.message || 'Error al enviar el formulario');
+        // Enviar a Google Sheets (si está configurado)
+        if (CONFIG.googleSheetsUrl) {
+            await sendToGoogleSheets(formData);
         }
+        
+        // Mostrar modal de éxito
+        hideLoading();
+        showSuccessModal();
+        
     } catch (error) {
-        console.error('Error:', error);
-        showNotification('Error al enviar el formulario. Por favor, intente nuevamente.', 'error');
-    } finally {
-        // Restaurar estado del botón
-        submitBtn.disabled = false;
-        submitText.textContent = 'Enviar Solicitud';
-        loadingSpinner.style.display = 'none';
+        console.error('Error al enviar formulario:', error);
+        hideLoading();
+        showNotification('Error al procesar el pedido. Será redirigido a WhatsApp.', 'warning');
+        
+        // Redirigir a WhatsApp después de 2 segundos
+        setTimeout(() => {
+            openWhatsAppWithOrder();
+        }, 2000);
     }
 }
 
-// Recopilar datos del formulario
-function collectFormData() {
-    const formData = {
-        nombre: document.getElementById('nombre').value.trim(),
-        telefono: document.getElementById('telefono').value.trim(),
-        plataforma: selectedPlatform ? selectedPlatform.name : '',
-        plan: selectedPlan ? selectedPlan.name : '',
-        valorPlan: selectedPlan ? selectedPlan[currentRenewalType + 'Price'] : 0,
-        tipoRenovacion: currentRenewalType,
-        promociones: []
-    };
-    
-    // Recopilar promociones seleccionadas
-    const selectedPromotions = document.querySelectorAll('input[name="promociones"]:checked');
-    selectedPromotions.forEach(checkbox => {
-        const promotion = PROMOTIONS.find(p => p.id === checkbox.value);
-        if (promotion) {
-            formData.promociones.push(promotion.name);
-        }
-    });
-    
-    return formData;
-}
-
 // Enviar datos a Google Sheets
-async function submitToGoogleSheets(formData) {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+async function sendToGoogleSheets(data) {
+    if (!CONFIG.googleSheetsUrl) {
+        throw new Error('Google Sheets URL not configured');
+    }
+    
+    const response = await fetch(CONFIG.googleSheetsUrl, {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(data)
     });
     
     if (!response.ok) {
@@ -868,16 +569,127 @@ async function submitToGoogleSheets(formData) {
     return await response.json();
 }
 
-// Mostrar mensaje de éxito
-function showSuccessMessage() {
-    const form = document.getElementById('streamingForm');
-    const successMessage = document.getElementById('success-message');
+// Mostrar loading
+function showLoading() {
+    elements.loadingOverlay.style.display = 'flex';
+    elements.submitBtn.disabled = true;
+    elements.submitBtn.querySelector('.btn-text').style.display = 'none';
+    elements.submitBtn.querySelector('.btn-loader').style.display = 'flex';
+}
+
+// Ocultar loading
+function hideLoading() {
+    elements.loadingOverlay.style.display = 'none';
+    elements.submitBtn.disabled = false;
+    elements.submitBtn.querySelector('.btn-text').style.display = 'block';
+    elements.submitBtn.querySelector('.btn-loader').style.display = 'none';
+}
+
+// Mostrar modal de éxito
+function showSuccessModal() {
+    const summaryHTML = `
+        <div class="order-summary">
+            <h4>Detalles del Pedido:</h4>
+            <p><strong>Cliente:</strong> ${formState.formData.nombre}</p>
+            <p><strong>Teléfono:</strong> ${formState.formData.telefono}</p>
+            <p><strong>Plataforma:</strong> ${formState.formData.plataforma}</p>
+            <p><strong>Plan:</strong> ${formState.formData.plan}</p>
+            <p><strong>Pantallas:</strong> ${formState.formData.pantallas}</p>
+            <p><strong>Renovación:</strong> ${formState.formData.renovacion}</p>
+            ${formState.formData.promocion !== 'Ninguna' ? `<p><strong>Promoción:</strong> ${formState.formData.promocion}</p>` : ''}
+            <p class="total-price"><strong>Total: ${formatPrice(formState.formData.precio)}</strong></p>
+        </div>
+    `;
     
-    form.style.display = 'none';
-    successMessage.style.display = 'block';
+    elements.modalSummary.innerHTML = summaryHTML;
+    elements.successModal.style.display = 'flex';
     
-    // Scroll al mensaje de éxito
-    successMessage.scrollIntoView({ behavior: 'smooth' });
+    // Auto-redirigir a WhatsApp después de 3 segundos
+    setTimeout(() => {
+        openWhatsAppWithOrder();
+    }, 3000);
+}
+
+// Cerrar modal
+function closeModal() {
+    elements.successModal.style.display = 'none';
+}
+
+// Abrir WhatsApp con el pedido
+function openWhatsAppWithOrder() {
+    const data = formState.formData;
+    const message = `🎬 *NUEVO PEDIDO - STREAMING ARGENTINA*
+
+👤 *Cliente:* ${data.nombre}
+📱 *Teléfono:* ${data.telefono}
+
+🎯 *DETALLES DEL PEDIDO:*
+• *Plataforma:* ${data.plataforma}
+• *Plan:* ${data.plan}
+• *Pantallas:* ${data.pantallas}
+• *Renovación:* ${data.renovacion}
+${data.promocion !== 'Ninguna' ? `• *Promoción:* ${data.promocion}` : ''}
+
+💰 *TOTAL A PAGAR: ${formatPrice(data.precio)}*
+
+📅 *Fecha:* ${data.fecha}
+
+¡Gracias por elegir StreamingARG! 🚀`;
+
+    const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Cerrar modal después de abrir WhatsApp
+    setTimeout(() => {
+        closeModal();
+        resetForm();
+    }, 1000);
+}
+
+// Abrir WhatsApp general
+function openWhatsApp() {
+    const message = `¡Hola! Me interesa conocer más sobre las plataformas streaming disponibles. 🎬`;
+    const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^\d]/g, '')}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Seleccionar plataforma desde las cards
+function selectPlatform(platformId) {
+    elements.platformSelect.value = platformId;
+    handlePlatformChange();
+    
+    // Scroll al formulario
+    elements.form.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Resetear formulario
+function resetForm() {
+    elements.form.reset();
+    formState = {
+        selectedPlatform: null,
+        selectedDuration: null,
+        selectedScreens: null,
+        selectedRenewal: null,
+        selectedPromotion: null,
+        calculatedPrice: 0,
+        formData: {}
+    };
+    
+    hidePlatformDetails();
+    elements.submitBtn.disabled = true;
+    
+    // Limpiar errores
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(el => {
+        el.classList.remove('show');
+        el.textContent = '';
+    });
+    
+    // Limpiar estilos de error
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.style.borderColor = '';
+    });
 }
 
 // Mostrar notificación
@@ -886,10 +698,8 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()">×</button>
     `;
     
     // Agregar estilos si no existen
@@ -901,287 +711,59 @@ function showNotification(message, type = 'info') {
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                z-index: 1000;
-                max-width: 400px;
-                padding: 16px;
+                padding: 15px 20px;
                 border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                animation: slideIn 0.3s ease-out;
-            }
-            
-            .notification-success {
-                background: #10b981;
                 color: white;
-            }
-            
-            .notification-error {
-                background: #ef4444;
-                color: white;
-            }
-            
-            .notification-info {
-                background: #2563eb;
-                color: white;
-            }
-            
-            .notification-content {
+                font-weight: 500;
+                z-index: 10000;
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+                gap: 10px;
+                animation: slideInRight 0.3s ease;
+                max-width: 400px;
             }
-            
-            .notification-close {
+            .notification-info { background: var(--accent-blue); }
+            .notification-success { background: var(--success-color); }
+            .notification-warning { background: var(--warning-color); }
+            .notification-error { background: var(--error-color); }
+            .notification button {
                 background: none;
                 border: none;
-                color: inherit;
-                font-size: 20px;
+                color: white;
+                font-size: 18px;
                 cursor: pointer;
                 padding: 0;
-                margin-left: 12px;
+                width: 20px;
+                height: 20px;
             }
-            
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOut {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
             }
         `;
         document.head.appendChild(styles);
     }
     
-    // Agregar al DOM
     document.body.appendChild(notification);
     
-    // Configurar cierre automático
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        removeNotification(notification);
-    });
-    
-    // Auto-cerrar después de 5 segundos
+    // Auto-remover después de 5 segundos
     setTimeout(() => {
-        if (notification.parentNode) {
-            removeNotification(notification);
+        if (notification.parentElement) {
+            notification.remove();
         }
     }, 5000);
 }
 
-// Remover notificación
-function removeNotification(notification) {
-    notification.style.animation = 'slideOut 0.3s ease-out';
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-        }
-    }, 300);
+// Funciones globales para uso en HTML
+window.openWhatsApp = openWhatsApp;
+window.openWhatsAppWithOrder = openWhatsAppWithOrder;
+window.selectPlatform = selectPlatform;
+window.closeModal = closeModal;
+
+// Debug: Exponer funciones para testing
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    window.formState = formState;
+    window.CONFIG = CONFIG;
+    window.resetForm = resetForm;
+    console.log('🔧 Debug mode enabled. Access formState and CONFIG from console.');
 }
-
-// Resetear formulario
-function resetForm() {
-    const form = document.getElementById('streamingForm');
-    const successMessage = document.getElementById('success-message');
-    
-    // Limpiar formulario
-    form.reset();
-    
-    // Resetear variables globales
-    selectedPlatform = null;
-    selectedPlan = null;
-    currentRenewalType = 'renewal';
-    
-    // Ocultar secciones
-    hidePlatformInfo();
-    hidePlanSelection();
-    hideRenewalSection();
-    hidePlanFeatures();
-    updatePlanValue(0);
-    
-    // Limpiar errores
-    const errorMessages = document.querySelectorAll('.error-message');
-    errorMessages.forEach(error => {
-        error.textContent = '';
-        error.classList.remove('show');
-    });
-    
-    const errorFields = document.querySelectorAll('.error');
-    errorFields.forEach(field => {
-        field.classList.remove('error');
-    });
-    
-    // Desmarcar promociones
-    const promotionCards = document.querySelectorAll('.promocion-card');
-    promotionCards.forEach(card => {
-        card.classList.remove('selected');
-    });
-    
-    const promotionCheckboxes = document.querySelectorAll('input[name="promociones"]');
-    promotionCheckboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    
-    // Mostrar formulario y ocultar mensaje de éxito
-    form.style.display = 'block';
-    successMessage.style.display = 'none';
-    
-    // Scroll al formulario
-    form.scrollIntoView({ behavior: 'smooth' });
-    
-    showNotification('Formulario reiniciado. Puede realizar una nueva solicitud.', 'info');
-}
-
-// Funciones de utilidad adicionales
-
-// Validar número de teléfono colombiano
-function validateColombianPhone(phone) {
-    const cleanPhone = phone.replace(/\s/g, '');
-    // Acepta números de 10 dígitos que empiecen con 3 (móviles) o números fijos
-    return /^[3][0-9]{9}$/.test(cleanPhone) || /^[1-8][0-9]{6,7}$/.test(cleanPhone);
-}
-
-// Formatear número de teléfono
-function formatPhoneNumber(phone) {
-    const cleanPhone = phone.replace(/\D/g, '');
-    if (cleanPhone.length === 10) {
-        return cleanPhone.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
-    }
-    return phone;
-}
-
-// Detectar dispositivo móvil
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
-// Configurar comportamiento específico para móviles
-function setupMobileBehavior() {
-    if (isMobileDevice()) {
-        // Agregar clase para estilos específicos de móvil
-        document.body.classList.add('mobile-device');
-        
-        // Mejorar experiencia táctil
-        const cards = document.querySelectorAll('.platform-card, .promocion-card, .renewal-card');
-        cards.forEach(card => {
-            card.addEventListener('touchstart', function() {
-                this.style.transform = 'scale(0.98)';
-            });
-            
-            card.addEventListener('touchend', function() {
-                this.style.transform = '';
-            });
-        });
-    }
-}
-
-// Configurar lazy loading para imágenes
-function setupLazyLoading() {
-    const images = document.querySelectorAll('img[src*="placehold.co"]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
-    }
-}
-
-// Configurar analytics (opcional)
-function trackEvent(eventName, eventData = {}) {
-    // Aquí puedes integrar con Google Analytics, Facebook Pixel, etc.
-    console.log('Event tracked:', eventName, eventData);
-    
-    // Ejemplo para Google Analytics 4
-    if (typeof gtag !== 'undefined') {
-        gtag('event', eventName, eventData);
-    }
-}
-
-// Configurar eventos de analytics
-function setupAnalytics() {
-    // Tracking de selección de plataforma
-    document.getElementById('plataforma').addEventListener('change', function(e) {
-        if (e.target.value) {
-            trackEvent('platform_selected', {
-                platform: e.target.value,
-                platform_name: selectedPlatform?.name
-            });
-        }
-    });
-    
-    // Tracking de selección de plan
-    document.getElementById('plan').addEventListener('change', function(e) {
-        if (e.target.value) {
-            trackEvent('plan_selected', {
-                plan: e.target.value,
-                plan_name: selectedPlan?.name,
-                platform: selectedPlatform?.id
-            });
-        }
-    });
-    
-    // Tracking de envío de formulario
-    document.getElementById('streamingForm').addEventListener('submit', function() {
-        trackEvent('form_submitted', {
-            platform: selectedPlatform?.id,
-            plan: selectedPlan?.id,
-            renewal_type: currentRenewalType
-        });
-    });
-}
-
-// Inicializar funcionalidades adicionales
-document.addEventListener('DOMContentLoaded', function() {
-    setupMobileBehavior();
-    setupLazyLoading();
-    setupAnalytics();
-    
-    // Configurar formato automático de teléfono
-    const phoneInput = document.getElementById('telefono');
-    phoneInput.addEventListener('input', function(e) {
-        const formatted = formatPhoneNumber(e.target.value);
-        if (formatted !== e.target.value) {
-            e.target.value = formatted;
-        }
-    });
-    
-    // Prevenir envío accidental del formulario
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && e.target.tagName !== 'BUTTON' && e.target.type !== 'submit') {
-            e.preventDefault();
-        }
-    });
-});
-
-// Manejar errores globales
-window.addEventListener('error', function(e) {
-    console.error('Error global:', e.error);
-    showNotification('Ha ocurrido un error inesperado. Por favor, recargue la página.', 'error');
-});
-
-// Manejar errores de promesas no capturadas
-window.addEventListener('unhandledrejection', function(e) {
-    console.error('Promise rejection no manejada:', e.reason);
-    showNotification('Error de conexión. Por favor, verifique su conexión a internet.', 'error');
-});

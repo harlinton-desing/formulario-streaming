@@ -3,301 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Plataformas Streaming | Suscripciones Premium</title>
-    <meta name="description" content="Suscríbete a las mejores plataformas de streaming con los mejores precios. Netflix, Disney+, Prime Video, HBO Max y más.">
-    <link rel="stylesheet" href="styles.css">
+    <title>Streaming Argentina - Plataformas Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <h1 class="logo">🎬 StreamingPro</h1>
-                <nav class="nav">
-                    <a href="#inicio" class="nav-link">Inicio</a>
-                    <a href="#plataformas" class="nav-link">Plataformas</a>
-                    <a href="#formulario" class="nav-link">Suscribirse</a>
-                </nav>
+                <div class="logo">
+                    <div class="logo-icon">🎬</div>
+                    <h1>STREAMING<span class="highlight">ARG</span></h1>
+                    <p class="tagline">Plataformas Premium</p>
+                </div>
+                <div class="header-info">
+                    <div class="currency-info">
+                        <span class="currency-label">Tipo de cambio hoy en Argentina:</span>
+                        <span class="currency-value">$ 1.200 ARS</span>
+                    </div>
+                    <button class="whatsapp-btn" onclick="openWhatsApp()">
+                        <span class="whatsapp-icon">📱</span>
+                        CONTACTAR WHATSAPP
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#streaming">CUENTAS STREAMING</a></li>
+                <li><a href="#netflix">NETFLIX PLANES</a></li>
+                <li><a href="#promociones">PROMOCIONES</a></li>
+                <li><a href="#iptv">TV ONLINE</a></li>
+                <li><a href="#software">SOFTWARE</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    Las Mejores
-                    <span class="hero-title-accent">Suscripciones Premium</span>
-                </h1>
-                <p class="hero-description">
-                    Accede a Netflix, Disney+, Prime Video, YouTube Premium y más plataformas 
-                    con los precios más competitivos del mercado colombiano.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#formulario" class="btn btn-primary">Ver Planes Disponibles</a>
-                    <a href="#plataformas" class="btn btn-secondary">Explorar Plataformas</a>
-                </div>
+                <h2>¡ÚNETE A NUESTRO GRUPO DE WHATSAPP Y RECIBE NUESTRAS OFERTAS Y PROMOCIONES!</h2>
+                <button class="cta-button" onclick="openWhatsApp()">
+                    HAZ CLICK WHATSAPP ▶
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Plataformas Section -->
-    <section id="plataformas" class="platforms">
+    <!-- Main Content -->
+    <main class="main">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Plataformas Disponibles</h2>
-                <p class="section-description">Tenemos los mejores precios en las plataformas más populares</p>
-            </div>
-            
-            <div class="platforms-grid">
-                <div class="platform-card popular">
-                    <div class="platform-badge">Popular</div>
-                    <img src="https://placehold.co/80x80?text=Netflix+Logo+Red+Background" alt="Netflix" class="platform-logo">
-                    <h3 class="platform-name">Netflix Premium</h3>
-                    <p class="platform-description">Planes desde $7.000 con calidad 4K y perfiles privados</p>
-                    <div class="platform-category">Streaming</div>
-                </div>
-
-                <div class="platform-card">
-                    <img src="https://placehold.co/80x80?text=Disney+Logo+Blue+Background" alt="Disney+" class="platform-logo">
-                    <h3 class="platform-name">Disney+ ESPN</h3>
-                    <p class="platform-description">Contenido familiar y deportes desde $5.000</p>
-                    <div class="platform-category">Streaming</div>
-                </div>
-
-                <div class="platform-card popular">
-                    <div class="platform-badge">Popular</div>
-                    <img src="https://placehold.co/80x80?text=YouTube+Logo+Red+Background" alt="YouTube Premium" class="platform-logo">
-                    <h3 class="platform-name">YouTube Premium</h3>
-                    <p class="platform-description">Sin anuncios y música incluida desde $4.500</p>
-                    <div class="platform-category">Streaming</div>
-                </div>
-
-                <div class="platform-card">
-                    <img src="https://placehold.co/80x80?text=Prime+Video+Blue+Background" alt="Prime Video" class="platform-logo">
-                    <h3 class="platform-name">Prime Video</h3>
-                    <p class="platform-description">Películas y series exclusivas desde $4.500</p>
-                    <div class="platform-category">Streaming</div>
-                </div>
-
-                <div class="platform-card">
-                    <img src="https://placehold.co/80x80?text=HBO+Max+Purple+Background" alt="HBO Max" class="platform-logo">
-                    <h3 class="platform-name">Max (HBO Max)</h3>
-                    <p class="platform-description">Contenido premium desde $5.000</p>
-                    <div class="platform-category">Streaming</div>
-                </div>
-
-                <div class="platform-card">
-                    <img src="https://placehold.co/80x80?text=Canva+Purple+Background" alt="Canva Pro" class="platform-logo">
-                    <h3 class="platform-name">Canva Pro</h3>
-                    <p class="platform-description">Herramienta de diseño profesional desde $4.000</p>
-                    <div class="platform-category">Diseño</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Formulario Section -->
-    <section id="formulario" class="form-section">
-        <div class="container">
-            <div class="form-container">
+            <!-- Form Section -->
+            <section class="form-section">
                 <div class="form-header">
-                    <h2 class="form-title">Formulario de Suscripción</h2>
-                    <p class="form-description">Complete los datos para su suscripción a plataformas de streaming</p>
+                    <h2>Formulario para Plataforma Streaming</h2>
+                    <p>Completa tus datos y selecciona tu plataforma favorita</p>
                 </div>
 
-                <form id="streamingForm" class="streaming-form">
-                    <!-- Información Personal -->
-                    <div class="form-section-title">
-                        <h3>Información Personal</h3>
-                    </div>
-                    
-                    <div class="form-row">
+                <form id="streamingForm" class="streaming-form" novalidate>
+                    <div class="form-grid">
+                        <!-- Personal Info -->
                         <div class="form-group">
-                            <label for="nombre" class="form-label">Nombre *</label>
-                            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Ingrese su nombre completo" required>
-                            <div class="error-message" id="nombre-error"></div>
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" placeholder="Ingrese su nombre completo" required>
+                            <span class="error-message" id="name-error"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="telefono" class="form-label">Teléfono *</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-input" placeholder="Ej: 3001234567" required>
-                            <div class="error-message" id="telefono-error"></div>
+                            <label for="phone">Teléfono *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+54 9 XXX XXX-XXXX" required>
+                            <span class="error-message" id="phone-error"></span>
+                        </div>
+
+                        <!-- Platform Selection -->
+                        <div class="form-group full-width">
+                            <label for="platform">Seleccionar Plataforma *</label>
+                            <select id="platform" name="platform" required>
+                                <option value="">-- Seleccione una plataforma --</option>
+                                <option value="chatgpt">ChatGPT Plus Oficial</option>
+                                <option value="movies-app">Aplicación de Películas y Series (Solo Android)</option>
+                                <option value="disney">Disney+ ESPN</option>
+                                <option value="rakuten">🎌 Rakuten VikiViki – Perfil Privado</option>
+                                <option value="crunchyroll">Crunchyroll Megafan</option>
+                                <option value="max">🟣 Max (ex HBO Max)</option>
+                                <option value="prime">🚀 Prime Video</option>
+                                <option value="paramount">🔵 Paramount+ – Perfil Privado</option>
+                                <option value="vix">📺 Vix Premium – Perfil Privado</option>
+                                <option value="youtube">▶ YouTube Premium – Grupo Familiar</option>
+                                <option value="netflix-premium">🎬 Netflix Premium 4K – Cuenta Compartida</option>
+                                <option value="netflix-standard">🟢 Netflix Estándar HD – Cuenta Compartida</option>
+                                <option value="netflix-private">🔴 Netflix Extra Privado – Cuenta Individual</option>
+                                <option value="canva">🎨 CANVA PRO – RENOVABLE</option>
+                                <option value="xtv">✅ XTV en Vivo</option>
+                                <option value="tv-online">📡 TV Online Plus</option>
+                                <option value="tv-sg">📡 TV SG DIGITAL IPTV</option>
+                            </select>
+                            <span class="error-message" id="platform-error"></span>
                         </div>
                     </div>
 
-                    <!-- Selección de Plataforma -->
-                    <div class="form-section-title">
-                        <h3>Selección de Servicio</h3>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="plataforma" class="form-label">Plataforma *</label>
-                        <select id="plataforma" name="plataforma" class="form-select" required>
-                            <option value="">Seleccione una plataforma</option>
-                        </select>
-                        <div class="error-message" id="plataforma-error"></div>
-                    </div>
-
-                    <!-- Platform Info Display -->
-                    <div id="platform-info" class="platform-info" style="display: none;">
-                        <div class="platform-info-content">
-                            <img id="platform-image" src="" alt="" class="platform-info-image">
-                            <div class="platform-info-text">
-                                <h4 id="platform-title"></h4>
-                                <p id="platform-description"></p>
+                    <!-- Dynamic Platform Details -->
+                    <div id="platform-details" class="platform-details" style="display: none;">
+                        <div class="platform-card">
+                            <div class="platform-image">
+                                <img id="platform-img" src="" alt="Platform Logo">
+                            </div>
+                            <div class="platform-info">
+                                <h3 id="platform-title"></h3>
+                                <div id="platform-description"></div>
+                                <div class="pricing-options" id="pricing-options"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group" id="plan-group" style="display: none;">
-                        <label for="plan" class="form-label">Plan *</label>
-                        <select id="plan" name="plan" class="form-select">
-                            <option value="">Seleccione un plan</option>
-                        </select>
-                        <div class="error-message" id="plan-error"></div>
-                    </div>
-
-                    <!-- Tipo de Renovación -->
-                    <div id="renewal-section" class="renewal-section" style="display: none;">
-                        <div class="form-section-title">
-                            <h3>Tipo de Renovación</h3>
+                    <!-- Plan Selection -->
+                    <div id="plan-selection" class="plan-selection" style="display: none;">
+                        <div class="form-group">
+                            <label for="duration">Duración del Plan *</label>
+                            <select id="duration" name="duration">
+                                <option value="">-- Seleccione duración --</option>
+                            </select>
                         </div>
-                        <div class="renewal-options">
-                            <div class="renewal-card" id="renewal-card">
-                                <input type="radio" id="renewal" name="tipoRenovacion" value="renewal" checked>
-                                <label for="renewal" class="renewal-label">
-                                    <div class="renewal-title">Con Renovación</div>
-                                    <div class="renewal-price" id="renewal-price">$0</div>
+
+                        <div class="form-group">
+                            <label for="screens">Número de Pantallas *</label>
+                            <select id="screens" name="screens">
+                                <option value="">-- Seleccione pantallas --</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de Renovación *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="renewal" value="con-renovacion" id="with-renewal">
+                                    <span class="radio-custom"></span>
+                                    Con Renovación (Precio especial)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="renewal" value="sin-renovacion" id="without-renewal">
+                                    <span class="radio-custom"></span>
+                                    Sin Renovación
                                 </label>
                             </div>
-                            <div class="renewal-card" id="non-renewal-card">
-                                <input type="radio" id="non-renewal" name="tipoRenovacion" value="non-renewal">
-                                <label for="non-renewal" class="renewal-label">
-                                    <div class="renewal-title">Sin Renovación</div>
-                                    <div class="renewal-price" id="non-renewal-price">$0</div>
-                                </label>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Plan Features -->
-                    <div id="plan-features" class="plan-features" style="display: none;">
-                        <h4>Características incluidas:</h4>
-                        <ul id="features-list"></ul>
+                    <!-- Promotions -->
+                    <div id="promotions-section" class="promotions-section" style="display: none;">
+                        <h3>🎉 Promociones Disponibles</h3>
+                        <div id="available-promotions"></div>
                     </div>
 
-                    <!-- Valor del Plan -->
-                    <div class="form-group">
-                        <label for="valorPlan" class="form-label">Valor del Plan</label>
-                        <input type="text" id="valorPlan" name="valorPlan" class="form-input price-input" readonly value="$0">
-                    </div>
-
-                    <!-- Promociones -->
-                    <div class="form-section-title">
-                        <h3>Promociones Disponibles</h3>
-                        <p class="section-subtitle">Seleccione las promociones que desea aplicar (solo una vez por cliente)</p>
-                    </div>
-
-                    <div id="promociones-container" class="promociones-container">
-                        <!-- Las promociones se cargarán dinámicamente -->
+                    <!-- Price Summary -->
+                    <div id="price-summary" class="price-summary" style="display: none;">
+                        <div class="summary-card">
+                            <h3>Resumen de tu Pedido</h3>
+                            <div class="summary-details">
+                                <div class="summary-row">
+                                    <span>Plataforma:</span>
+                                    <span id="summary-platform">-</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Plan:</span>
+                                    <span id="summary-plan">-</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Pantallas:</span>
+                                    <span id="summary-screens">-</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Renovación:</span>
+                                    <span id="summary-renewal">-</span>
+                                </div>
+                                <div class="summary-row promotion-row" id="promotion-row" style="display: none;">
+                                    <span>Promoción:</span>
+                                    <span id="summary-promotion">-</span>
+                                </div>
+                                <div class="summary-row total-row">
+                                    <span>Total a Pagar:</span>
+                                    <span id="total-price">$ 0 ARS</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="form-submit">
-                        <button type="submit" class="btn btn-primary btn-large" id="submit-btn">
-                            <span id="submit-text">Enviar Solicitud</span>
-                            <div id="loading-spinner" class="loading-spinner" style="display: none;"></div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn" id="submit-btn" disabled>
+                            <span class="btn-text">Realizar Pedido</span>
+                            <span class="btn-loader" style="display: none;">Enviando...</span>
                         </button>
                     </div>
                 </form>
+            </section>
 
-                <!-- Success Message -->
-                <div id="success-message" class="success-message" style="display: none;">
-                    <div class="success-content">
-                        <div class="success-icon">✅</div>
-                        <h3>¡Solicitud Enviada Exitosamente!</h3>
-                        <p>Hemos recibido su solicitud de suscripción. Nos pondremos en contacto con usted pronto.</p>
-                        <button id="new-request" class="btn btn-secondary">Nueva Solicitud</button>
+            <!-- Featured Platforms -->
+            <section class="featured-platforms" id="streaming">
+                <h2>Plataformas Destacadas</h2>
+                <div class="platforms-grid">
+                    <div class="platform-item" data-platform="netflix-premium">
+                        <div class="platform-badge">¡Oferta!</div>
+                        <img src="https://via.placeholder.com/300x200/E50914/FFFFFF?text=NETFLIX" alt="Netflix Premium">
+                        <h3>Netflix Premium 4K</h3>
+                        <p>Cuenta Compartida - Perfil Privado</p>
+                        <div class="price">Desde $8.000 ARS</div>
+                        <button class="select-btn" onclick="selectPlatform('netflix-premium')">Seleccionar</button>
+                    </div>
+
+                    <div class="platform-item" data-platform="disney">
+                        <img src="https://via.placeholder.com/300x200/113CCF/FFFFFF?text=DISNEY+" alt="Disney Plus">
+                        <h3>Disney+ ESPN</h3>
+                        <p>Acceso completo a Disney y ESPN</p>
+                        <div class="price">Desde $5.000 ARS</div>
+                        <button class="select-btn" onclick="selectPlatform('disney')">Seleccionar</button>
+                    </div>
+
+                    <div class="platform-item" data-platform="prime">
+                        <img src="https://via.placeholder.com/300x200/00A8E1/FFFFFF?text=PRIME" alt="Prime Video">
+                        <h3>🚀 Prime Video</h3>
+                        <p>Películas y series exclusivas</p>
+                        <div class="price">Desde $4.500 ARS</div>
+                        <button class="select-btn" onclick="selectPlatform('prime')">Seleccionar</button>
+                    </div>
+
+                    <div class="platform-item" data-platform="max">
+                        <img src="https://via.placeholder.com/300x200/7B2CBF/FFFFFF?text=MAX" alt="Max HBO">
+                        <h3>🟣 Max (ex HBO Max)</h3>
+                        <p>Contenido premium de HBO</p>
+                        <div class="price">Desde $5.000 ARS</div>
+                        <button class="select-btn" onclick="selectPlatform('max')">Seleccionar</button>
+                    </div>
+
+                    <div class="platform-item" data-platform="youtube">
+                        <img src="https://via.placeholder.com/300x200/FF0000/FFFFFF?text=YOUTUBE" alt="YouTube Premium">
+                        <h3>▶ YouTube Premium</h3>
+                        <p>Sin anuncios + YouTube Music</p>
+                        <div class="price">Desde $4.500 ARS</div>
+                        <button class="select-btn" onclick="selectPlatform('youtube')">Seleccionar</button>
+                    </div>
+
+                    <div class="platform-item" data-platform="canva">
+                        <img src="https://via.placeholder.com/300x200/00C4CC/FFFFFF?text=CANVA" alt="Canva Pro">
+                        <h3>🎨 CANVA PRO</h3>
+                        <p>Diseño profesional renovable</p>
+                        <div class="price">Desde $4.000 ARS</div>
+                        <button class="select-btn" onclick="selectPlatform('canva')">Seleccionar</button>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">¿Por qué elegirnos?</h2>
-                <p class="section-description">Somos líderes en suscripciones premium con miles de clientes satisfechos</p>
-            </div>
-            
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">💰</div>
-                    <h3>Precios más bajos del mercado</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🔧</div>
-                    <h3>Soporte técnico 24/7</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>Activación inmediata</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🛡️</div>
-                    <h3>Garantía de funcionamiento</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🎁</div>
-                    <h3>Promociones exclusivas</h3>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">💳</div>
-                    <h3>Múltiples métodos de pago</h3>
-                </div>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="footer-title">StreamingPro</h3>
-                    <p class="footer-description">Tu mejor opción para suscripciones premium a precios increíbles.</p>
+                    <h3>StreamingARG</h3>
+                    <p>Tu tienda de confianza para plataformas streaming premium en Argentina.</p>
                 </div>
                 <div class="footer-section">
-                    <h3 class="footer-title">Contacto</h3>
-                    <div class="footer-contact">
-                        <p>WhatsApp: +57 300 123 4567</p>
-                        <p>Email: soporte@streamingpro.com</p>
-                        <p>Horario: 24/7</p>
-                    </div>
+                    <h4>Contacto</h4>
+                    <p>WhatsApp: +54 9 381 628-2866</p>
+                    <p>Atención: 24/7</p>
                 </div>
                 <div class="footer-section">
-                    <h3 class="footer-title">Servicios</h3>
-                    <div class="footer-services">
-                        <p>Netflix Premium</p>
-                        <p>Disney+ ESPN</p>
-                        <p>YouTube Premium</p>
-                        <p>Prime Video</p>
-                    </div>
+                    <h4>Métodos de Pago</h4>
+                    <p>Transferencia Bancaria</p>
+                    <p>MercadoPago</p>
+                    <p>Efectivo</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 StreamingPro. Todos los derechos reservados.</p>
+                <p>&copy; 2024 StreamingARG. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>¡Pedido Enviado Exitosamente! ✅</h3>
+            </div>
+            <div class="modal-body">
+                <p>Tu pedido ha sido procesado correctamente.</p>
+                <p>En breve serás redirigido a WhatsApp para confirmar tu compra.</p>
+                <div class="modal-summary" id="modal-summary"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn" onclick="closeModal()">Cerrar</button>
+                <button class="modal-btn primary" onclick="openWhatsAppWithOrder()">Ir a WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Procesando tu pedido...</p>
+        </div>
+    </div>
+
+    <script src="platforms-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
