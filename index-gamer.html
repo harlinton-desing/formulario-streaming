@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GESTION MOON - Las mejores plataformas streaming premium en Argentina. Netflix, Disney+, YouTube Premium y más con los mejores precios.">
+    <meta name="keywords" content="streaming, netflix, disney plus, youtube premium, argentina, suscripciones">
+    <meta name="author" content="GESTION MOON">
+    <title>GESTION MOON - Plataformas Streaming Premium Argentina</title>
+    
+    <!-- Preconnect para optimización -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">sm
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles-gamer-complete.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4b494547-66e0-4241-8336-bc5c7143e00f.png" 
+                         alt="GESTION MOON Logo" 
+                         class="logo-img"
+                         onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><text y=\'.9em\' font-size=\'90\'>🎬</text></svg>';">
+                    <div class="logo-text">
+                        <h1>GESTION<span class="highlight">MOON</span></h1>
+                        <p class="tagline">Plataformas Streaming Premium</p>
+                    </div>
+                </div>
+                
+                <div class="header-info">
+                    <div class="currency-info">
+                        <span class="currency-label">💱 Precio USD</span>
+                        
+                    </div>
+                    <button class="whatsapp-btn" onclick="openWhatsApp()" aria-label="Contactar por WhatsApp">
+                        <span class="whatsapp-icon">📱</span>
+                        <span>WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación con Pestañas -->
+    <nav class="nav-tabs" id="nav-tabs">
+        <div class="container">
+            <div class="tabs-wrapper">
+                <button class="tab-btn active" data-tab="streaming" aria-label="Ver cuentas streaming">
+                    <span class="tab-icon">🎬</span>
+                    <span class="tab-text">CUENTAS STREAMING</span>
+                </button>
+                <button class="tab-btn" data-tab="netflix" aria-label="Ver planes Netflix">
+                    <span class="tab-icon">🔴</span>
+                    <span class="tab-text">NETFLIX PLANES</span>
+                </button>
+                <button class="tab-btn" data-tab="promociones" aria-label="Ver promociones">
+                    <span class="tab-icon">🎉</span>
+                    <span class="tab-text">PROMOCIONES</span>
+                </button>
+                <button class="tab-btn" data-tab="iptv" aria-label="Ver TV Online">
+                    <span class="tab-icon">📺</span>
+                    <span class="tab-text">TV ONLINE</span>
+                </button>
+                <button class="tab-btn" data-tab="formulario" aria-label="Ir al formulario">
+                    <span class="tab-icon">📝</span>
+                    <span class="tab-text">HACER PEDIDO</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrusel Hero -->
+    <section class="hero-carousel" id="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+                <div class="carousel-slide active">
+                    <img src="https://placehold.co/1200x400/E50914/FFFFFF?text=Netflix+Premium+4K+Ultra+HD+Disponible+Ahora" 
+                         alt="Netflix Premium 4K Ultra HD disponible con calidad superior"
+                         onerror="this.onerror=null;this.src='https://placehold.co/1200x400/E50914/FFFFFF?text=Netflix+Premium';">
+                    <div class="carousel-overlay">
+                        <h2>Netflix Premium 4K</h2>
+                        <p>Calidad Ultra HD - Perfil Privado con PIN</p>
+                        <button class="cta-btn" onclick="selectPlatformFromCarousel('netflix-premium')">Ver Planes</button>
+                    </div>
+                </div>
+                
+                <div class="carousel-slide">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/133aca01-6376-4f9f-97cf-f4fc000517be.png" 
+                         alt="Disney Plus ESPN con contenido familiar y deportes en vivo"
+                         onerror="this.onerror=null;this.src='https://placehold.co/1200x400/113CCF/FFFFFF?text=Disney+Plus+ESPN';">
+                    <div class="carousel-overlay">
+                        <h2>Disney+ ESPN</h2>
+                        <p>Contenido familiar y deportes en vivo</p>
+                        <button class="cta-btn" onclick="selectPlatformFromCarousel('disney')">Ver Planes</button>
+                    </div>
+                </div>
+                
+                <div class="carousel-slide">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a27500c8-8b35-40e1-867d-3f6b188a288f.png" 
+                         alt="Prime Video con series y películas exclusivas de Amazon"
+                         onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aed4ce69-d0a5-45b1-b2b5-f6f207ac17a7.png';">
+                    <div class="carousel-overlay">
+                        <h2>Prime Video</h2>
+                        <p>Series y películas exclusivas de Amazon</p>
+                        <button class="cta-btn" onclick="selectPlatformFromCarousel('prime')">Ver Planes</button>
+                    </div>
+                </div>
+                
+                <div class="carousel-slide">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2ed3a6ae-7ff0-47dd-b1b1-1836f4b51cde.png" 
+                         alt="Max HBO con contenido premium de Warner Bros"
+                         onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0e5f1efc-5a37-41c5-9889-70c7294cae42.png';">
+                    <div class="carousel-overlay">
+                        <h2>Max (HBO Max)</h2>
+                        <p>Contenido premium de Warner Bros</p>
+                        <button class="cta-btn" onclick="selectPlatformFromCarousel('max')">Ver Planes</button>
+                    </div>
+                </div>
+                
+                <div class="carousel-slide">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0a37b5ce-ce69-451f-969d-e86da32a705d.png" 
+                         alt="YouTube Premium sin anuncios con YouTube Music incluido"
+                         onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83006bcd-cfdc-49e1-835d-0cd5eca3296d.png';">
+                    <div class="carousel-overlay">
+                        <h2>YouTube Premium</h2>
+                        <p>Sin anuncios + YouTube Music incluido</p>
+                        <button class="cta-btn" onclick="selectPlatformFromCarousel('youtube')">Ver Planes</button>
+                    </div>
+                </div>
+                
+                <div class="carousel-slide">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9ff65230-3c2d-4ce5-804b-36a4ade25d64.png" 
+                         alt="Canva Pro herramientas de diseño profesional"
+                         onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e306ea46-446b-4d32-b8e7-f0c5037b7eb9.png';">
+                    <div class="carousel-overlay">
+                        <h2>Canva Pro</h2>
+                        <p>Herramientas de diseño profesional</p>
+                        <button class="cta-btn" onclick="selectPlatformFromCarousel('canva')">Ver Planes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles del Carrusel -->
+            <button class="carousel-btn prev" onclick="previousSlide()" aria-label="Slide anterior">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()" aria-label="Siguiente slide">›</button>
+            
+            <!-- Indicadores -->
+            <div class="carousel-indicators" id="carousel-indicators">
+                <button class="indicator active" data-slide="0" aria-label="Ir al slide 1"></button>
+                <button class="indicator" data-slide="1" aria-label="Ir al slide 2"></button>
+                <button class="indicator" data-slide="2" aria-label="Ir al slide 3"></button>
+                <button class="indicator" data-slide="3" aria-label="Ir al slide 4"></button>
+                <button class="indicator" data-slide="4" aria-label="Ir al slide 5"></button>
+                <button class="indicator" data-slide="5" aria-label="Ir al slide 6"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido Principal con Pestañas -->
+    <main class="main-content" id="main-content">
+        <div class="container">
+            
+            <!-- Pestaña: Cuentas Streaming -->
+            <section class="tab-content active" id="tab-streaming">
+                <div class="section-header">
+                    <h2>🎬 Cuentas Streaming Premium</h2>
+                    <p>Las mejores plataformas de streaming con precios exclusivos para Argentina</p>
+                </div>
+                
+                <div class="platforms-grid">
+                    <div class="platform-card" data-platform="netflix-premium">
+                        <div class="platform-badge popular">¡Más Popular!</div>
+                        <div class="platform-image">
+                            <img src="https://placehold.co/300x200/E50914/FFFFFF?text=NETFLIX+PREMIUM" 
+                                 alt="Netflix Premium 4K con calidad ultra HD"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x200/E50914/FFFFFF?text=NETFLIX';">
+                        </div>
+                        <div class="platform-info">
+                            <h3>🎬 Netflix Premium 4K</h3>
+                            <p>Cuenta Compartida - Perfil Privado con PIN</p>
+                            <div class="platform-features">
+                                <span class="feature">✅ Calidad 4K Ultra HD</span>
+                                <span class="feature">🛡️ Perfil Privado</span>
+                                <span class="feature">📱 Múltiples dispositivos</span>
+                            </div>
+                            <div class="platform-price">Desde <strong>$8.000 ARS</strong></div>
+                            <button class="select-btn" onclick="selectPlatform('netflix-premium')">Seleccionar</button>
+                        </div>
+                    </div>
+
+                    <div class="platform-card" data-platform="disney">
+                        <div class="platform-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50b680cb-4514-4fe5-b64b-06b5bc6e35e2.png" 
+                                 alt="Disney Plus ESPN con contenido familiar y deportes"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x200/113CCF/FFFFFF?text=Disney+Plus';">
+                        </div>
+                        <div class="platform-info">
+                            <h3>🏰 Disney+ ESPN</h3>
+                            <p>Acceso completo a Disney y ESPN</p>
+                            <div class="platform-features">
+                                <span class="feature">🏰 Contenido Disney</span>
+                                <span class="feature">⚽ ESPN Deportes</span>
+                                <span class="feature">🦸 Marvel & Star Wars</span>
+                            </div>
+                            <div class="platform-price">Desde <strong>$5.000 ARS</strong></div>
+                            <button class="select-btn" onclick="selectPlatform('disney')">Seleccionar</button>
+                        </div>
+                    </div>
+
+                    <div class="platform-card" data-platform="youtube">
+                        <div class="platform-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83a68719-7eba-4337-9760-9dbe9fcd4e8b.png" 
+                                 alt="YouTube Premium sin anuncios con música incluida"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/300x200/FF0000/FFFFFF?text=YouTube+Premium';">
+                        </div>
+                        <div class="platform-info">
+                            <h3>▶ YouTube Premium</h3>
+                            <p>Sin anuncios + YouTube Music</p>
+                            <div class="platform-features">
+                                <span class="feature">🚫 Sin anuncios</span>
+                                <span class="feature">🎵 YouTube Music</span>
+                                <span class="feature">📱 Descarga offline</span>
+                            </div>
+                            <div class="platform-price">Desde <strong>$4.500 ARS</strong></div>
+                            <button class="select-btn" onclick="selectPlatform('youtube')">Seleccionar</button>
+                        </div>
+                    </div>
+
+                    <div class="platform-card" data-platform="prime">
+                        <div class="platform-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fb7db6aa-127a-4e21-a143-eba6ace057bb.png" 
+                                 alt="Prime Video con contenido exclusivo de Amazon"
+                                 onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/155573e1-f11b-46a9-9ed3-84194e98cc55.png';">
+                        </div>
+                        <div class="platform-info">
+                            <h3>🚀 Prime Video</h3>
+                            <p>Películas y series exclusivas</p>
+                            <div class="platform-features">
+                                <span class="feature">🎬 Contenido original</span>
+                                <span class="feature">📦 Beneficios Prime</span>
+                                <span class="feature">🌍 Contenido global</span>
+                            </div>
+                            <div class="platform-price">Desde <strong>$4.500 ARS</strong></div>
+                            <button class="select-btn" onclick="selectPlatform('prime')">Seleccionar</button>
+                        </div>
+                    </div>
+
+                    <div class="platform-card" data-platform="max">
+                        <div class="platform-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5b79b68a-0f89-41dc-b091-2bc2f0393b90.png" 
+                                 alt="Max HBO con contenido premium de Warner"
+                                 onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ac141e53-38f5-4015-920e-5657b8223ec5.png';">
+                        </div>
+                        <div class="platform-info">
+                            <h3>🟣 Max (HBO Max)</h3>
+                            <p>Contenido premium de HBO</p>
+                            <div class="platform-features">
+                                <span class="feature">🎬 Películas de estreno</span>
+                                <span class="feature">📺 Series HBO</span>
+                                <span class="feature">🏆 Contenido premiado</span>
+                            </div>
+                            <div class="platform-price">Desde <strong>$5.000 ARS</strong></div>
+                            <button class="select-btn" onclick="selectPlatform('max')">Seleccionar</button>
+                        </div>
+                    </div>
+
+                    <div class="platform-card" data-platform="canva">
+                        <div class="platform-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b92b98d8-2bd9-407f-a615-0099bb0275dd.png" 
+                                 alt="Canva Pro herramientas de diseño profesional"
+                                 onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3e7a1de7-2e25-48d5-b6dd-2e582034997b.png';">
+                        </div>
+                        <div class="platform-info">
+                            <h3>🎨 CANVA PRO</h3>
+                            <p>Diseño profesional renovable</p>
+                            <div class="platform-features">
+                                <span class="feature">🎨 Plantillas premium</span>
+                                <span class="feature">📸 Millones de fotos</span>
+                                <span class="feature">☁️ Almacenamiento ilimitado</span>
+                            </div>
+                            <div class="platform-price">Desde <strong>$4.000 ARS</strong></div>
+                            <button class="select-btn" onclick="selectPlatform('canva')">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pestaña: Netflix Planes -->
+            <section class="tab-content" id="tab-netflix">
+                <div class="section-header">
+                    <h2>🔴 Planes Netflix Disponibles</h2>
+                    <p>Todos los planes de Netflix con precios especiales y garantía de funcionamiento</p>
+                </div>
+                
+                <div class="netflix-plans">
+                    <div class="plan-card premium">
+                        <div class="plan-badge">Recomendado</div>
+                        <h3>🎬 Netflix Premium 4K</h3>
+                        <div class="plan-description">
+                            <p>Cuenta Compartida - Perfil Privado con PIN</p>
+                            <ul class="plan-features">
+                                <li>✅ Calidad Ultra HD (4K)</li>
+                                <li>🛡️ Perfil privado con PIN</li>
+                                <li>👥 Cuenta compartida</li>
+                                <li>🔄 Transferencia de perfil incluida</li>
+                            </ul>
+                        </div>
+                        <div class="plan-pricing">
+                            <div class="price-option">
+                                <span class="screens">1 Pantalla</span>
+                                <div class="prices">
+                                    <span class="price renewal">Con renovación: $8.000</span>
+                                    <span class="price no-renewal">Sin renovación: $8.500</span>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span class="screens">2 Pantallas</span>
+                                <div class="prices">
+                                    <span class="price renewal">Con renovación: $14.000</span>
+                                    <span class="price no-renewal">Sin renovación: $15.000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="select-btn" onclick="selectPlatform('netflix-premium')">Seleccionar Plan</button>
+                    </div>
+
+                    <div class="plan-card standard">
+                        <h3>🟢 Netflix Estándar HD</h3>
+                        <div class="plan-description">
+                            <p>Cuenta Compartida - Perfil Privado con PIN</p>
+                            <ul class="plan-features">
+                                <li>✅ Calidad HD (1080p)</li>
+                                <li>🛡️ Perfil privado con PIN</li>
+                                <li>👥 Cuenta compartida</li>
+                                <li>✅ Sin mensajes si ambas pantallas están en el mismo Wi-Fi</li>
+                            </ul>
+                        </div>
+                        <div class="plan-pricing">
+                            <div class="price-option">
+                                <span class="screens">1 Pantalla</span>
+                                <div class="prices">
+                                    <span class="price renewal">Con renovación: $7.000</span>
+                                    <span class="price no-renewal">Sin renovación: $7.500</span>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span class="screens">2 Pantallas</span>
+                                <div class="prices">
+                                    <span class="price renewal">Con renovación: $13.000</span>
+                                    <span class="price no-renewal">Sin renovación: $14.000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="select-btn" onclick="selectPlatform('netflix-standard')">Seleccionar Plan</button>
+                    </div>
+
+                    <div class="plan-card private">
+                        <div class="plan-badge exclusive">Exclusivo</div>
+                        <h3>🔴 Netflix Extra Privado</h3>
+                        <div class="plan-description">
+                            <p>Cuenta 100% privada y exclusiva</p>
+                            <ul class="plan-features">
+                                <li>✨ Cuenta 100% privada y exclusiva</li>
+                                <li>🔐 Sin mensajes ni bloqueos</li>
+                                <li>📺 Calidad Ultra HD (4K) garantizada</li>
+                                <li>🏠 Sin restricciones de ubicación</li>
+                            </ul>
+                        </div>
+                        <div class="plan-pricing">
+                            <div class="price-option">
+                                <span class="screens">1 Pantalla</span>
+                                <div class="prices">
+                                    <span class="price renewal">Con renovación: $8.500</span>
+                                    <span class="price no-renewal">Sin renovación: $9.500</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="select-btn" onclick="selectPlatform('netflix-private')">Seleccionar Plan</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pestaña: Promociones -->
+            <section class="tab-content" id="tab-promociones">
+                <div class="section-header">
+                    <h2>🎉 Promociones Especiales</h2>
+                    <p>Ofertas limitadas y descuentos exclusivos para nuevos clientes</p>
+                </div>
+                
+                <div class="promotions-grid">
+                    <div class="promotion-card">
+                        <div class="promo-badge">¡Oferta Limitada!</div>
+                        <h3>📡 TV Online Plus</h3>
+                        <div class="promo-description">
+                            <p>Promoción única por cliente</p>
+                            <ul class="promo-features">
+                                <li>📺 Canales HD premium</li>
+                                <li>🌎 Contenido internacional</li>
+                                <li>⚽ Deportes en vivo</li>
+                                <li>📱 3 dispositivos incluidos</li>
+                            </ul>
+                        </div>
+                        <div class="promo-pricing">
+                            <div class="price-comparison">
+                                <span class="old-price">Precio normal: $15.500</span>
+                                <span class="new-price">Precio promocional: $14.500</span>
+                            </div>
+                            <span class="savings">¡Ahorrás $1.000!</span>
+                        </div>
+                        <button class="select-btn promo" onclick="selectPlatform('tv-online')">Aprovechar Oferta</button>
+                    </div>
+
+                    <div class="promotion-card">
+                        <div class="promo-badge">Nuevos Clientes</div>
+                        <h3>✅ XTV en Vivo</h3>
+                        <div class="promo-description">
+                            <p>Promoción especial solo para nuevos clientes</p>
+                            <ul class="promo-features">
+                                <li>📺 Canales en vivo</li>
+                                <li>⚽ Deportes premium</li>
+                                <li>🎬 Películas 24/7</li>
+                                <li>📱 Múltiples dispositivos</li>
+                            </ul>
+                        </div>
+                        <div class="promo-pricing">
+                            <div class="price-options">
+                                <div class="price-option">
+                                    <span>1 Mes - 1 Dispositivo: $3.500</span>
+                                </div>
+                                <div class="price-option">
+                                    <span>2 Meses - 2 Dispositivos: $5.500</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="select-btn promo" onclick="selectPlatform('xtv')">Aprovechar Oferta</button>
+                    </div>
+
+                    <div class="promotion-card">
+                        <div class="promo-badge">Combo Especial</div>
+                        <h3>🎬 Netflix + Disney+</h3>
+                        <div class="promo-description">
+                            <p>Combo exclusivo con descuento especial</p>
+                            <ul class="promo-features">
+                                <li>🎬 Netflix Premium 4K</li>
+                                <li>🏰 Disney+ ESPN completo</li>
+                                <li>💰 Descuento por combo</li>
+                                <li>🔄 Renovación automática</li>
+                            </ul>
+                        </div>
+                        <div class="promo-pricing">
+                            <div class="price-comparison">
+                                <span class="old-price">Precio separado: $13.000</span>
+                                <span class="new-price">Precio combo: $11.500</span>
+                            </div>
+                            <span class="savings">¡Ahorrás $1.500!</span>
+                        </div>
+                        <button class="select-btn promo" onclick="openWhatsApp()">Consultar Combo</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pestaña: TV Online -->
+            <section class="tab-content" id="tab-iptv">
+                <div class="section-header">
+                    <h2>📺 TV Online & IPTV</h2>
+                    <p>Canales de televisión en vivo y contenido premium para toda la familia</p>
+                </div>
+                
+                <div class="iptv-grid">
+                    <div class="iptv-card">
+                        <div class="iptv-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c21b0a61-2a08-4251-ad0b-904fed5360ff.png" 
+                                 alt="TV Online Plus con canales premium en HD"
+                                 onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aac8d6d8-6e87-4a55-9014-cf02c320b7bf.png';">
+                        </div>
+                        <div class="iptv-info">
+                            <h3>📡 TV Online Plus</h3>
+                            <p>3 dispositivos - Canales premium</p>
+                            <div class="iptv-features">
+                                <span class="feature">📺 Canales HD</span>
+                                <span class="feature">🌎 Contenido internacional</span>
+                                <span class="feature">⚽ Deportes en vivo</span>
+                                <span class="feature">📱 3 dispositivos</span>
+                            </div>
+                            <div class="iptv-pricing">
+                                <div class="price-option">
+                                    <span class="duration">1 Mes</span>
+                                    <span class="price">$5.500 ARS</span>
+                                </div>
+                                <div class="price-option">
+                                    <span class="duration">3 Meses</span>
+                                    <span class="price">$15.500 ARS</span>
+                                </div>
+                            </div>
+                            <button class="select-btn" onclick="selectPlatform('tv-online')">Seleccionar</button>
+                        </div>
+                    </div>
+
+                    <div class="iptv-card">
+                        <div class="iptv-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7fa3d523-bfcc-41f0-9538-841329b69404.png" 
+                                 alt="XTV en Vivo con deportes y entretenimiento"
+                                 onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e7ad2309-908d-487c-89d2-4515c456c5fd.png';">
+                        </div>
+                        <div class="iptv-info">
+                            <h3>✅ XTV en Vivo</h3>
+                            <p>3 dispositivos - TV en vivo</p>
+                            <div class="iptv-features">
+                                <span class="feature">📺 Canales en vivo</span>
+                                <span class="feature">⚽ Deportes premium</span>
+                                <span class="feature">🎬 Películas 24/7</span>
+                                <span class="feature">📱 3 dispositivos</span>
+                            </div>
+                            <div class="iptv-pricing">
+                                <div class="price-option">
+                                    <span class="duration">1 Mes</span>
+                                    <span class="price">$5.000 ARS</span>
+                                </div>
+                                <div class="price-option">
+                                    <span class="duration">3 Meses</span>
+                                    <span class="price">$15.500 ARS</span>
+                                </div>
+                            </div>
+                            <button class="select-btn" onclick="selectPlatform('xtv')">Seleccionar</button>
+                        </div>
+                    </div>
+
+                    <div class="iptv-card">
+                        <div class="iptv-image">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/237d928c-258f-447b-98b7-1b973db3dc6b.png" 
+                                 alt="TV SG Digital IPTV con calidad premium"
+                                 onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7e50556e-4044-4ae7-a9f9-4b82bf39e4e6.png';">
+                        </div>
+                        <div class="iptv-info">
+                            <h3>📡 TV SG DIGITAL IPTV</h3>
+                            <p>3 dispositivos - IPTV premium</p>
+                            <div class="iptv-features">
+                                <span class="feature">📺 IPTV de calidad</span>
+                                <span class="feature">🎬 VOD incluido</span>
+                                <span class="feature">⚽ Deportes premium</span>
+                                <span class="feature">📱 3 dispositivos</span>
+                            </div>
+                            <div class="iptv-pricing">
+                                <div class="price-option">
+                                    <span class="duration">1 Mes</span>
+                                    <span class="price">$5.000 ARS</span>
+                                </div>
+                                <div class="price-option">
+                                    <span class="duration">3 Meses</span>
+                                    <span class="price">$12.500 ARS</span>
+                                </div>
+                            </div>
+                            <button class="select-btn" onclick="selectPlatform('tv-sg')">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pestaña: Formulario de Pedido -->
+            <section class="tab-content" id="tab-formulario">
+                <div class="section-header">
+                    <h2>📝 Realizar Pedido</h2>
+                    <p>Completa tus datos y selecciona tu plataforma favorita</p>
+                </div>
+
+                <div class="form-container">
+                    <form id="streamingForm" class="streaming-form" novalidate>
+                        <div class="form-section personal-info">
+                            <h3>👤 Información Personal</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="name">Nombre Completo *</label>
+                                    <input type="text" id="name" name="name" placeholder="Ingrese su nombre completo" required>
+                                    <span class="error-message" id="name-error"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">Teléfono *</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+54 9 XXX XXX-XXXX" required>
+                                    <span class="error-message" id="phone-error"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section platform-selection">
+                            <h3>🎬 Selección de Plataforma</h3>
+                            <div class="form-group full-width">
+                                <label for="platform">Seleccionar Plataforma *</label>
+                                <select id="platform" name="platform" required>
+                                    <option value="">-- Seleccione una plataforma --</option>
+                                    <optgroup label="🎬 Streaming Premium">
+                                        <option value="netflix-premium">🎬 Netflix Premium 4K – Cuenta Compartida</option>
+                                        <option value="netflix-standard">🟢 Netflix Estándar HD – Cuenta Compartida</option>
+                                        <option value="netflix-private">🔴 Netflix Extra Privado – Cuenta Individual</option>
+                                        <option value="disney">🏰 Disney+ ESPN</option>
+                                        <option value="prime">🚀 Prime Video</option>
+                                        <option value="max">🟣 Max (ex HBO Max)</option>
+                                        <option value="youtube">▶ YouTube Premium – Grupo Familiar</option>
+                                    </optgroup>
+                                    <optgroup label="🎨 Herramientas & Servicios">
+                                        <option value="canva">🎨 CANVA PRO – RENOVABLE</option>
+                                        <option value="chatgpt">🤖 ChatGPT Plus Oficial</option>
+                                    </optgroup>
+                                    <optgroup label="📺 TV Online & IPTV">
+                                        <option value="tv-online">📡 TV Online Plus</option>
+                                        <option value="xtv">✅ XTV en Vivo</option>
+                                        <option value="tv-sg">📡 TV SG DIGITAL IPTV</option>
+                                    </optgroup>
+                                    <optgroup label="🎌 Contenido Especializado">
+                                        <option value="rakuten">🎌 Rakuten VikiViki – Perfil Privado</option>
+                                        <option value="crunchyroll">🎌 Crunchyroll Megafan</option>
+                                        <option value="paramount">🔵 Paramount+ – Perfil Privado</option>
+                                        <option value="vix">📺 Vix Premium – Perfil Privado</option>
+                                    </optgroup>
+                                    <optgroup label="📱 Aplicaciones">
+                                        <option value="movies-app">📱 Aplicación de Películas y Series (Solo Android)</option>
+                                    </optgroup>
+                                </select>
+                                <span class="error-message" id="platform-error"></span>
+                            </div>
+                        </div>
+
+                        <!-- Detalles Dinámicos de la Plataforma -->
+                        <div id="platform-details" class="platform-details" style="display: none;">
+                            <div class="platform-showcase">
+                                <div class="platform-image-container">
+                                    <img id="platform-img" src="" alt="Platform Logo" class="platform-logo">
+                                </div>
+                                <div class="platform-info-container">
+                                    <h3 id="platform-title"></h3>
+                                    <div id="platform-description" class="platform-description"></div>
+                                    <div class="pricing-preview" id="pricing-preview"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selección de Plan -->
+                        <div id="plan-selection" class="form-section plan-selection" style="display: none;">
+                            <h3>⚙️ Configuración del Plan</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="duration">Duración del Plan *</label>
+                                    <select id="duration" name="duration">
+                                        <option value="">-- Seleccione duración --</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="screens">Número de Pantallas *</label>
+                                    <select id="screens" name="screens">
+                                        <option value="">-- Seleccione pantallas --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group renewal-options">
+                                <label class="section-label">Tipo de Renovación *</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="renewal" value="con-renovacion" id="with-renewal">
+                                        <span class="radio-custom"></span>
+                                        <div class="radio-content">
+                                            <span class="radio-title">Con Renovación</span>
+                                            <span class="radio-subtitle">Precio especial con renovación automática</span>
+                                        </div>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="renewal" value="sin-renovacion" id="without-renewal">
+                                        <span class="radio-custom"></span>
+                                        <div class="radio-content">
+                                            <span class="radio-title">Sin Renovación</span>
+                                            <span class="radio-subtitle">Pago único sin renovación automática</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Promociones Disponibles -->
+                        <div id="promotions-section" class="form-section promotions-section" style="display: none;">
+                            <h3>🎉 Promociones Disponibles</h3>
+                            <div id="available-promotions" class="promotions-container"></div>
+                        </div>
+
+                        <!-- Resumen del Pedido -->
+                        <div id="price-summary" class="form-section price-summary" style="display: none;">
+                            <h3>💰 Resumen de tu Pedido</h3>
+                            <div class="summary-card">
+                                <div class="summary-details">
+                                    <div class="summary-row">
+                                        <span class="label">Plataforma:</span>
+                                        <span class="value" id="summary-platform">-</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span class="label">Plan:</span>
+                                        <span class="value" id="summary-plan">-</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span class="label">Pantallas:</span>
+                                        <span class="value" id="summary-screens">-</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span class="label">Renovación:</span>
+                                        <span class="value" id="summary-renewal">-</span>
+                                    </div>
+                                    <div class="summary-row promotion-row" id="promotion-row" style="display: none;">
+                                        <span class="label">Promoción:</span>
+                                        <span class="value" id="summary-promotion">-</span>
+                                    </div>
+                                    <div class="summary-row total-row">
+                                        <span class="label">Total a Pagar:</span>
+                                        <span class="value total-price" id="total-price">$ 0 ARS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón de Envío -->
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn" id="submit-btn" disabled>
+                                <span class="btn-icon">🚀</span>
+                                <span class="btn-text">Realizar Pedido</span>
+                                <span class="btn-loader" style="display: none;">
+                                    <span class="spinner"></span>
+                                    Enviando...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GESTION MOON</h3>
+                    <p>Tu tienda de confianza para plataformas streaming premium en Argentina.</p>
+                    <div class="social-links">
+                        <button onclick="openWhatsApp()" class="social-btn whatsapp">
+                            <span>📱</span> WhatsApp
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>📞 Contacto</h4>
+                    <p><strong>WhatsApp:</strong> +54 9 381 628-2866</p>
+                    <p><strong>Atención:</strong> 24/7</p>
+                    <p><strong>Respuesta:</strong> Inmediata</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>💳 Métodos de Pago</h4>
+                    <ul class="payment-methods">
+                        <li>🏦 Transferencia Bancaria</li>
+                        <li>💰 MercadoPago</li>
+                        <li>💵 Efectivo</li>
+                        <li>💳 Tarjetas de Crédito</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>🛡️ Garantías</h4>
+                    <ul class="guarantees">
+                        <li>✅ Funcionamiento garantizado</li>
+                        <li>🔄 Soporte técnico incluido</li>
+                        <li>⚡ Activación inmediata</li>
+                        <li>🛡️ Reemplazo sin costo</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 GESTION MOON. Todos los derechos reservados.</p>
+                <p>Plataformas streaming premium para Argentina 🇦🇷</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Éxito -->
+    <div id="success-modal" class="modal" style="display: none;" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">¡Pedido Enviado Exitosamente! ✅</h3>
+                <button class="modal-close" onclick="closeModal()" aria-label="Cerrar modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-animation">
+                    <div class="checkmark">✓</div>
+                </div>
+                <p>Tu pedido ha sido procesado correctamente.</p>
+                <p>En breve serás redirigido a WhatsApp para confirmar tu compra.</p>
+                <div class="modal-summary" id="modal-summary"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal()">Cerrar</button>
+                <button class="modal-btn primary" onclick="openWhatsAppWithOrder()">
+                    <span>📱</span> Ir a WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay de Carga -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <h3>Procesando tu pedido...</h3>
+            <p>Por favor espera mientras guardamos tu información</p>
+        </div>
+    </div>
+
+    <!-- Notificaciones Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="script-complete-fixed.js"></script>
+</body>
+</html>
